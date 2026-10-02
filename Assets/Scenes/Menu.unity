@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &39682986 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6126447273044220932, guid: dba02ee3cfe984e4fbf829d00c372879, type: 3}
-  m_PrefabInstance: {fileID: 1220237307}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,61 +1204,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dba02ee3cfe984e4fbf829d00c372879, type: 3}
---- !u!114 &1220237309 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1826276773882632127, guid: dba02ee3cfe984e4fbf829d00c372879, type: 3}
-  m_PrefabInstance: {fileID: 1220237307}
+--- !u!1 &1520502996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &1220237310 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5702037546174486826, guid: dba02ee3cfe984e4fbf829d00c372879, type: 3}
-  m_PrefabInstance: {fileID: 1220237307}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1520502997}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1520502997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &1220237311 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 193679920378835712, guid: dba02ee3cfe984e4fbf829d00c372879, type: 3}
-  m_PrefabInstance: {fileID: 1220237307}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &1220237312 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2576239853925922200, guid: dba02ee3cfe984e4fbf829d00c372879, type: 3}
-  m_PrefabInstance: {fileID: 1220237307}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!114 &1220237313 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2475408559759596898, guid: dba02ee3cfe984e4fbf829d00c372879, type: 3}
-  m_PrefabInstance: {fileID: 1220237307}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_GameObject: {fileID: 1520502996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 680.9446, y: -0.00001, z: -1516.4956}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1790107129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,8 +1272,6 @@ MonoBehaviour:
   gameExitManager: {fileID: 1790107132}
   CameraController: {fileID: 0}
   _playerControler: {fileID: 0}
-  densityManager: {fileID: 0}
-  dephaseBoxScript: {fileID: 0}
   _inputcontroler: {fileID: 0}
 --- !u!4 &1790107131
 Transform:
@@ -1338,7 +1301,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameExitManager
   ExitDelay: 5
-  exitCountdownText: {fileID: 1220237309}
 --- !u!114 &1790107133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1363,11 +1325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d76deada3cc854e81ed42a4136fde4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  textCurrentLevel: {fileID: 39682986}
-  textHealthText: {fileID: 1220237313}
-  textInventoryAvaillabilityText: {fileID: 1220237312}
-  HealthBar: {fileID: 1220237311}
-  InventoryCapacity: {fileID: 1220237310}
   HealthBarMax: 100
   healingDone: 12
   DamageTaken: 21
@@ -1503,7 +1460,6 @@ MonoBehaviour:
   jumpHeight: 2
   StandHeight: 2
   CrouchHeight: 1
-  Health: 1
   accelerationRate: 5
   movementSmoothTime: 0.1
   ActiveCheckPoint: {fileID: 0}
@@ -1515,16 +1471,8 @@ MonoBehaviour:
     m_Bits: 4294967295
   isGrounded: 0
   externalVelocity: {x: 0, y: 0, z: 0}
-  textPowerCells: {fileID: 0}
-  textGrappleGun: {fileID: 0}
-  PauseScreen: {fileID: 0}
   playerScript: {fileID: 2353447749194233535}
-  CheckPointGround: {fileID: 0}
-  CheckPointTowerTop: {fileID: 0}
-  CheckPointTowerMid: {fileID: 0}
   firstPersonCam: {fileID: 7088113814092360785}
-  grappleCamera: {fileID: 7088113814092360785}
-  PowerOn: 0
 --- !u!143 &2560603034202611022
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2321,3 +2269,4 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1220237307}
+  - {fileID: 1520502997}
