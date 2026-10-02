@@ -1,7 +1,6 @@
-using TMPro;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
+
 /// <summary>
 ///GAME2018 / 4085 / Game Engine for Programmers II(B)/Englehart, Matthew/Robichaud, Sam
 ///Engine Programming Review 01 Centralized Input Manager
