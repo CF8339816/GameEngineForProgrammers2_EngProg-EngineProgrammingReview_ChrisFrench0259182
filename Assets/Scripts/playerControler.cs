@@ -1,6 +1,11 @@
 
 using UnityEngine;
+using TMPro;
+using TMProUGUI;
 
+using UnityEngine.InputSystem;
+using Unity;
+using UnityEngine.UIElements;
 /// <summary>
 ///GAME2018 / 4085 / Game Engine for Programmers II(B)/Englehart, Matthew/Robichaud, Sam
 ///Engine Programming Review 01 Centralized Input Manager
@@ -19,7 +24,7 @@ public class playercontroler : MonoBehaviour
     [SerializeField] float jumpHeight = 2f;
     [SerializeField] float StandHeight = 2f; // default ht of the character
     [SerializeField] float CrouchHeight = 1f; // target ht when crouched
-    [SerializeField] public float Health = 1f;
+  
     [SerializeField] float accelerationRate = 5f; //accelleration and decelleration rate
     [SerializeField] float movementSmoothTime = 0.1f; //time the accel & decel takes
     [SerializeField] public Transform ActiveCheckPoint;
@@ -35,43 +40,30 @@ public class playercontroler : MonoBehaviour
     private float currentSpeed;
     private float xRotation = 0f;
     public Vector3 externalVelocity;
-    public TextMeshProUGUI textPowerCells;
-    public TextMeshProUGUI textGrappleGun;
+  
     //public GrappleStatus grappleStatus;
     private float targetSpeed;
     private float currentHorizontalSpeed;
     private Vector3 currentMovementInput;
     private Vector3 smoothMoveVelocity; // vector for the SmoothDamp function
-    private GameObject PausedLevel; //stores current levvel duuring pause
-    public GameObject PauseScreen;
+
     ///GrappleStatus Vars
     public playercontroler playerScript;
-    public Transform CheckPointGround;
-    public Transform CheckPointTowerTop;
-    public Transform CheckPointTowerMid;
+   
     public Camera firstPersonCam;
-    public Camera grappleCamera;
+   
     /// </summary>
-    private int CellCount;
-    [SerializeField] public bool PowerOn;
-
+ 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked; // lock cursor to center of screen
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         currentSpeed = MoveSpeed; // presets speed at base move
         characterController.height = StandHeight;
         targetSpeed = MoveSpeed;
         currentHorizontalSpeed = MoveSpeed;
-        CellCount = 0;
-        PowerOn = false;
-        SetTextPowerCells();
-        //grappleStatus.SetTextGrappleGun();
-        if (ActiveCheckPoint == null)
-        {
-            ActiveCheckPoint = CheckPointGround;
-        }
-       
+        
     }
     void Update()
     {
@@ -119,15 +111,7 @@ public class playercontroler : MonoBehaviour
 
         currentHorizontalSpeed = Mathf.SmoothDamp(currentHorizontalSpeed, targetSpeed, ref smoothMoveVelocity.x, movementSmoothTime);//  uses SmoothDamp to adjust ease in and out of horizontal movements
     }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("PickUp")) //checks obj ffor PickUp tag
-        {
-            other.gameObject.SetActive(false); //deactivates obj when collided
-            CellCount++; //adds 1 to count when picked up
-            SetTextPowerCells();   //calls SetCountText method
-        }
-    }
+  
     public void SetVerticalVelocity(float y)
     {
         velocity.y = y;
@@ -136,22 +120,7 @@ public class playercontroler : MonoBehaviour
     {
         velocity = Vector3.zero;
     }
-    void SetTextPowerCells()
-    {
-        textPowerCells.text = "Power Cells collected: " + CellCount.ToString() + "/8"; // sets count to output to string
-
-        if (CellCount == 8)
-        {
-            PowerOn = true;
-            textGrappleGun.text = "Grapple Gun Powered: Yes \ncenter mouse to grapple \n right mouse to grapple and pull object";
-        }
-
-        else
-        {
-            PowerOn = false;
-            textGrappleGun.text = "Grapple Gun Powered: No";
-        }
-    }
+   
     private void HandleSpeedChanges()
     {
         if (isCrouching)

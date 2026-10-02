@@ -37,10 +37,7 @@ public class ServiceHub : MonoBehaviour
         if (_playerControler == null) _playerControler = GetComponent<playercontroler>();
         if (_inputcontroler == null) _inputcontroler = GetComponent<inputcontroler>();
        
-        if (densityManager == null) densityManager = GetComponent<DensityManager>();
-        if (dephaseBoxScript == null) dephaseBoxScript = GetComponent<DephaseBoxScript>();
-        
-
+     
 
 
 

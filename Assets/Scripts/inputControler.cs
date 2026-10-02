@@ -28,7 +28,7 @@ public class inputcontroler : MonoBehaviour
         crouchAction = InputSystem.actions.FindAction("Crouch"); //                          ||
 
 
-        Cursor.visible = false;
+        Cursor.visible = true;
     }
 
 
