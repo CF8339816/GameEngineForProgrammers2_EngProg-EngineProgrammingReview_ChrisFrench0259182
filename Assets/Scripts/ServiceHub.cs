@@ -15,8 +15,7 @@ public class ServiceHub : MonoBehaviour
     public GameExitManager gameExitManager;
     public camLookControler CameraController;
     public playercontroler _playerControler;
-    public DensityManager densityManager;
-    public DephaseBoxScript dephaseBoxScript;
+   
     public inputcontroler _inputcontroler;
 
 

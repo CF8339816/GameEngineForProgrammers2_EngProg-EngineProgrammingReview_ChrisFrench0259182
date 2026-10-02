@@ -1,9 +1,7 @@
 
 using UnityEngine;
 using TMPro;
-using TMProUGUI;
-
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 using Unity;
 using UnityEngine.UIElements;
 /// <summary>
@@ -57,8 +55,8 @@ public class playercontroler : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.visible = true;
         currentSpeed = MoveSpeed; // presets speed at base move
         characterController.height = StandHeight;
         targetSpeed = MoveSpeed;
