@@ -12,14 +12,6 @@ using UnityEngine.UI;
 #endregion
 public class Scenemanager : MonoBehaviour
 {
-    /// Self learning note
-    /// commented out is what  i tried for scene level switching  but it did not woerl found a tutorial that showed the index method for scene based level switching 
-    /// 
-
-    //[SerializeField] private Object Menu;
-    //[SerializeField] private Object Level1;
-    //[SerializeField] private Object Level2;
-    //[SerializeField] private Object Level3;
     private GameManager gameManager;
     private GameExitManager gameExitManager;
     private const int MENU_INDEX = 0;
@@ -79,15 +71,12 @@ public class Scenemanager : MonoBehaviour
             level3Button.onClick.AddListener(onLevel3);
         }
         Button QuitButton = GameObject.Find("Quit")?.GetComponent<Button>();
-        //if (QuitButton != null && ServiceHub.Instance != null && ServiceHub.Instance.gameExitManager != null)
-        //{
-        //    QuitButton.onClick.RemoveAllListeners();
-        //    QuitButton.onClick.AddListener(ServiceHub.Instance.gameExitManager.Ongameexit);
+        QuitButton.onClick.AddListener(ServiceHub.Instance.gameExitManager.Ongameexit);
         if (QuitButton != null)
         {
             QuitButton.onClick.RemoveAllListeners();
 
-            // Router fix: Bind directly to the persistent Instance to guarantee it functions on every level
+
             if (GameExitManager.Instance != null)
             {
                 QuitButton.onClick.AddListener(GameExitManager.Instance.Ongameexit);
@@ -123,31 +112,29 @@ public class Scenemanager : MonoBehaviour
     }
     public void LoadLevelByIndex(int index)
     {
-        if (index >= 0 && index < SceneManager.sceneCountInBuildSettings)    {   SceneManager.LoadScene(index);   }    
+        if (index >= 0 && index < SceneManager.sceneCountInBuildSettings) { SceneManager.LoadScene(index); }
     }
     public void onLevel1()
     {
-        LoadLevelByIndex(LEVEL_1_INDEX);//if (Level1 != null) {   SceneManager.LoadScene(1);   }
+        LoadLevelByIndex(LEVEL_1_INDEX);
     }
     public void onLevel2()
     {
-        LoadLevelByIndex(LEVEL_2_INDEX); //if (Level2 != null) {   SceneManager.LoadScene(2);   }
+        LoadLevelByIndex(LEVEL_2_INDEX);
     }
     public void onLevel3()
     {
-        LoadLevelByIndex(LEVEL_3_INDEX); //if (Level3 != null) {   SceneManager.LoadScene(3);    }
+        LoadLevelByIndex(LEVEL_3_INDEX);
     }
     public void onMenu()
     {
-        LoadLevelByIndex(MENU_INDEX); // if (Menu != null)   {   SceneManager.LoadScene(0);    }
+        LoadLevelByIndex(MENU_INDEX);
     }
     public void onStart()
     {
-        if (GameManager.Instance != null)  // if (Level1 != null) 
-        {
-            GameManager.Instance.onResetStats();
-            onLevel1();
-        }
+        if (GameManager.Instance != null) ;
+        GameManager.Instance.onResetStats();
+        onLevel1();
     }
     public void onLoadNextLevel()
     {
