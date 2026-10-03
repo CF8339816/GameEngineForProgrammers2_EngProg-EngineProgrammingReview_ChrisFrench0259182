@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 11944269}
   - component: {fileID: 11944268}
-  - component: {fileID: 11944267}
   - component: {fileID: 11944266}
   m_Layer: 0
   m_Name: Player
@@ -151,36 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
---- !u!114 &11944267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11944265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 0c91ed0014fbaa0458aa0583f38f83e7, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!143 &11944268
 CharacterController:
   m_ObjectHideFlags: 0
@@ -989,6 +958,17 @@ Transform:
   - {fileID: 1878806144}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1086116236 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6126447273044220932, guid: dba02ee3cfe984e4fbf829d00c372879, type: 3}
+  m_PrefabInstance: {fileID: 1220237307}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1124509302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,7 +2070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d76deada3cc854e81ed42a4136fde4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  textCurrentLevel: {fileID: 0}
+  textCurrentLevel: {fileID: 1086116236}
   textHealthText: {fileID: 1220237313}
   textInventoryAvaillabilityText: {fileID: 1220237312}
   HealthBar: {fileID: 1220237311}
