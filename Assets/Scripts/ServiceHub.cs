@@ -1,10 +1,10 @@
 using UnityEngine;
 #region coder & project
 /// <summary>
-///GAME2018 / 4085 / Game Engine for Programmers II(B)/Englehart, Matthew/Robichaud, Sam
-///Engine Programming Review 01 Centralized Input Manager
+/// NSCC GAME2025 / 4086 / Game Programming III(B)/ Doucette,Matthew
+/// Unity: Game Manager & Persistence
 /// Coder current script: Chris French Second Year NSCC Game Programming 
-/// Additions / annotations:
+/// Additions / annotations: Fixed naming conflict with Unity's built-in SceneManager.
 /// </summary>
 #endregion
 public class ServiceHub : MonoBehaviour
@@ -13,12 +13,6 @@ public class ServiceHub : MonoBehaviour
     public Scenemanager customSceneManager;
     public GameManager gameManager;
     public GameExitManager gameExitManager;
-    public camLookControler CameraController;
-    public playercontroler _playerControler;
-   
-    public inputcontroler _inputcontroler;
-
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,14 +25,5 @@ public class ServiceHub : MonoBehaviour
         if (customSceneManager == null) customSceneManager = GetComponent<Scenemanager>();
         if (gameManager == null) gameManager = GetComponent<GameManager>();
         if (gameExitManager == null) gameExitManager = GetComponent<GameExitManager>();
-       
-        if (CameraController == null) CameraController = GetComponent<camLookControler>();
-        if (_playerControler == null) _playerControler = GetComponent<playercontroler>();
-        if (_inputcontroler == null) _inputcontroler = GetComponent<inputcontroler>();
-       
-     
-
-
-
     }
 }

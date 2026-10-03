@@ -1,13 +1,14 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 #region coder & project
 /// <summary>
-///GAME2018 / 4085 / Game Engine for Programmers II(B)/Englehart, Matthew/Robichaud, Sam
-///Engine Programming Review 01 Centralized Input Manager
+/// NSCC GAME2025 / 4086 / Game Programming III(B)/ Doucette,Matthew
+/// Unity: Game Manager & Persistence
 /// Coder current script: Chris French Second Year NSCC Game Programming 
 /// Additions / annotations:
+/// 
 /// </summary>
 #endregion
 public class GameManager : MonoBehaviour
@@ -17,12 +18,12 @@ public class GameManager : MonoBehaviour
     private ServiceHub serviceHub;
     private Scenemanager sceneManager;
     [Header("text output")]
-    //public TextMeshProUGUI textCurrentLevel;
-    //public TextMeshProUGUI textHealthText;
-    //public TextMeshProUGUI textInventoryAvaillabilityText;
-    //[Header("sliders")]
-    //[SerializeField] private Slider HealthBar;
-    //[SerializeField] private Slider InventoryCapacity;
+    public TextMeshProUGUI textCurrentLevel;
+    public TextMeshProUGUI textHealthText;
+    public TextMeshProUGUI textInventoryAvaillabilityText;
+    [Header("sliders")]
+    [SerializeField] private Slider HealthBar;
+    [SerializeField] private Slider InventoryCapacity;
     [Header("health")]
     public int HealthBarMax = 100;
     private int HealthBarMin = 0;
@@ -60,32 +61,32 @@ public class GameManager : MonoBehaviour
     }
     private void FindUIElementsInNewScene()// finds the ui entries after destroyed to re-valuate them
     {        
-        //if (textHealthText == null) textHealthText = GameObject.Find("HealthText")?.GetComponent<TextMeshProUGUI>();
-        //if (textInventoryAvaillabilityText == null) textInventoryAvaillabilityText = GameObject.Find("InventoryAvaillabilityText")?.GetComponent<TextMeshProUGUI>();
-        //if (HealthBar == null) HealthBar = GameObject.Find("HealthBar")?.GetComponent<Slider>();
-        //if (InventoryCapacity == null) InventoryCapacity = GameObject.Find("InventoryCapacity")?.GetComponent<Slider>();
-        //if (textCurrentLevel == null) textCurrentLevel = GameObject.Find("CurrentLevel")?.GetComponent<TextMeshProUGUI>();
+        if (textHealthText == null) textHealthText = GameObject.Find("HealthText")?.GetComponent<TextMeshProUGUI>();
+        if (textInventoryAvaillabilityText == null) textInventoryAvaillabilityText = GameObject.Find("InventoryAvaillabilityText")?.GetComponent<TextMeshProUGUI>();
+        if (HealthBar == null) HealthBar = GameObject.Find("HealthBar")?.GetComponent<Slider>();
+        if (InventoryCapacity == null) InventoryCapacity = GameObject.Find("InventoryCapacity")?.GetComponent<Slider>();
+        if (textCurrentLevel == null) textCurrentLevel = GameObject.Find("CurrentLevel")?.GetComponent<TextMeshProUGUI>();
 
     }
     public void UpdateCurrentLevelOutput()
     {
-        //if (textCurrentLevel != null)
-        //{
-        //    string CurrentScene = SceneManager.GetActiveScene().name;
-        //    textCurrentLevel.text = "Current Level Loaded: " +CurrentScene;
-        //}
+        if (textCurrentLevel != null)
+        {
+            string CurrentScene = SceneManager.GetActiveScene().name;
+            textCurrentLevel.text = "Current Level Loaded: " +CurrentScene;
+        }
     }
     public void UpdateBagSpace()
     {
         InventorySpaceAvailable = InventoryBarMax - InventoryslotsUsed;
-        //InventoryCapacity.value = InventoryslotsUsed;
-        //textInventoryAvaillabilityText.text = "Slots available" + InventorySpaceAvailable.ToString() + "\nInventory used: " + InventoryslotsUsed.ToString() + "/" + InventoryBarMax.ToString();
+        InventoryCapacity.value = InventoryslotsUsed;
+        textInventoryAvaillabilityText.text = "Slots available" + InventorySpaceAvailable.ToString() + "\nInventory used: " + InventoryslotsUsed.ToString() + "/" + InventoryBarMax.ToString();
     }
     public void UpdateHealthBar()
     {
         healtBarOutput = currentHealthPercentage;
-        //HealthBar.value = healtBarOutput;
-        //textHealthText.text = "Health %: " + currentHealthPercentage.ToString() + "\nHealth: " + currentHealth.ToString()  +"/" + maxHealth.ToString();
+        HealthBar.value = healtBarOutput;
+        textHealthText.text = "Health %: " + currentHealthPercentage.ToString() + "\nHealth: " + currentHealth.ToString()  +"/" + maxHealth.ToString();
     }
     public void onTakeDamage()
     {
@@ -116,8 +117,8 @@ public class GameManager : MonoBehaviour
         currentHealth = maxHealth;
         InventoryslotsUsed = 0;
         CalculateHealthPercentage();
-        //if (HealthBar != null) { HealthBar.value = currentHealthPercentage; }
-        //if (InventoryCapacity != null) { InventoryCapacity.value = InventoryslotsUsed; }
+        if (HealthBar != null) { HealthBar.value = currentHealthPercentage; }
+        if (InventoryCapacity != null) { InventoryCapacity.value = InventoryslotsUsed; }
     }
 }
 
