@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
         serviceHub = Object.FindFirstObjectByType<ServiceHub>();
         sceneManager = Object.FindFirstObjectByType<Scenemanager>();
         gameExitManager = Object.FindFirstObjectByType<GameExitManager>();
+
+
+
         onResetStats();
     }
     private void Update()

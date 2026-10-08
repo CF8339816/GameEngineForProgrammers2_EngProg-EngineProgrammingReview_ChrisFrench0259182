@@ -14,10 +14,21 @@ public class Scenemanager : MonoBehaviour
 {
     private GameManager gameManager;
     private GameExitManager gameExitManager;
-    private const int MENU_INDEX = 0;
-    private const int LEVEL_1_INDEX = 1;
-    private const int LEVEL_2_INDEX = 2;
-    private const int LEVEL_3_INDEX = 3;
+    private const int MAIN_INDEX = 0;
+    private const int MENU_INDEX = 1;
+    private const int LEVEL_1_INDEX = 2;
+    private const int LEVEL_2_INDEX = 3;
+    private const int LEVEL_3_INDEX = 4;
+    private const int SHOP_INDEX = 5;
+    private const int PLAYER_INDEX = 6;
+    private const int HUD_INDEX = 7;
+    private const int ENVIRONMENT_INDEX = 8;
+
+    private int RETURNLEVEL_INDEX;
+    public int ReturnIndex;
+
+
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -70,6 +81,21 @@ public class Scenemanager : MonoBehaviour
             level3Button.onClick.RemoveAllListeners();
             level3Button.onClick.AddListener(onLevel3);
         }
+        Button ShopButton = GameObject.Find("Shop")?.GetComponent<Button>();
+        if (level3Button != null)
+        {
+            level3Button.onClick.RemoveAllListeners();
+            level3Button.onClick.AddListener(onShop);
+        }
+
+        Button ExitShopButton = GameObject.Find("ExitShop")?.GetComponent<Button>();
+        if (level3Button != null)
+        {
+            level3Button.onClick.RemoveAllListeners();
+            level3Button.onClick.AddListener(onExitShop);
+        }
+
+
         Button QuitButton = GameObject.Find("Quit")?.GetComponent<Button>();
         QuitButton.onClick.AddListener(ServiceHub.Instance.gameExitManager.Ongameexit);
         if (QuitButton != null)
@@ -112,34 +138,88 @@ public class Scenemanager : MonoBehaviour
     }
     public void LoadLevelByIndex(int index)
     {
-        if (index >= 0 && index < SceneManager.sceneCountInBuildSettings) { SceneManager.LoadScene(index); }
+        if (index == 0) //&& index < SceneManager.sceneCountInBuildSettings)
+        {
+            LoadLevelByIndex(MAIN_INDEX);
+            LoadLevelByIndex(MENU_INDEX);
+        }
+        else if ((index == 2 /*&& index < SceneManager.sceneCountInBuildSettings*/)|| (index == 3/* && index < SceneManager.sceneCountInBuildSettings*/)|| (index == 4 /*&& index < SceneManager.sceneCountInBuildSettings*/) || (index == 5 /*&& index < SceneManager.sceneCountInBuildSettings*/))
+        {
+            SceneManager.LoadScene(index); 
+        }
+        else
+        { 
+            SceneManager.LoadScene(index); 
+        }
     }
     public void onLevel1()
     {
-        LoadLevelByIndex(LEVEL_1_INDEX);
+        LoadLevelByIndex(LEVEL_1_INDEX );
+        LoadLevelByIndex(MENU_INDEX);
+        LoadLevelByIndex(HUD_INDEX );   
+        LoadLevelByIndex(PLAYER_INDEX);
+        LoadLevelByIndex(ENVIRONMENT_INDEX);
     }
     public void onLevel2()
     {
         LoadLevelByIndex(LEVEL_2_INDEX);
+        LoadLevelByIndex(MENU_INDEX);
+        LoadLevelByIndex(HUD_INDEX);
+        LoadLevelByIndex(PLAYER_INDEX);
+        LoadLevelByIndex(ENVIRONMENT_INDEX);
     }
     public void onLevel3()
     {
         LoadLevelByIndex(LEVEL_3_INDEX);
+        LoadLevelByIndex(MENU_INDEX);
+        LoadLevelByIndex(HUD_INDEX);
+        LoadLevelByIndex(PLAYER_INDEX);
+        LoadLevelByIndex(ENVIRONMENT_INDEX);
     }
     public void onMenu()
     {
+        LoadLevelByIndex(MAIN_INDEX);
         LoadLevelByIndex(MENU_INDEX);
+    }
+    public void onShop()
+    {
+        ReturnIndex = SceneManager.GetActiveScene().buildIndex;
+       
+        LoadLevelByIndex(SHOP_INDEX);
+        LoadLevelByIndex(MENU_INDEX);
+        LoadLevelByIndex(HUD_INDEX);
+        LoadLevelByIndex(PLAYER_INDEX);
+        LoadLevelByIndex(ENVIRONMENT_INDEX);
+    }
+    public void onExitShop()
+    { 
+        RETURNLEVEL_INDEX = ReturnIndex;
+       
+        LoadLevelByIndex(RETURNLEVEL_INDEX);
+        
+        LoadLevelByIndex(MENU_INDEX);
+        LoadLevelByIndex(HUD_INDEX);
+        LoadLevelByIndex(PLAYER_INDEX);
+        LoadLevelByIndex(ENVIRONMENT_INDEX);
     }
     public void onStart()
     {
-        if (GameManager.Instance != null) ;
+        if (GameManager.Instance != null);
         GameManager.Instance.onResetStats();
         onLevel1();
+        LoadLevelByIndex(MENU_INDEX);
+        LoadLevelByIndex(HUD_INDEX);
+        LoadLevelByIndex(PLAYER_INDEX);
+        LoadLevelByIndex(ENVIRONMENT_INDEX);
     }
     public void onLoadNextLevel()
     {
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
         LoadLevelByIndex(nextIndex);
+        LoadLevelByIndex(MENU_INDEX);
+        LoadLevelByIndex(HUD_INDEX);
+        LoadLevelByIndex(PLAYER_INDEX);
+        LoadLevelByIndex(ENVIRONMENT_INDEX);
     }
 }
 
