@@ -1,0 +1,162 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+#region coder & project
+/// <summary>
+/// NSCC GAME2025 / 4086 / Game Programming III(B)/ Doucette,Matthew
+/// Unity: Game Manager & Persistence
+/// Coder current script: Chris French Second Year NSCC Game Programming 
+/// Additions / annotations:
+/// 
+/// </summary>
+#endregion
+public class InterfaceManager : MonoBehaviour
+{
+
+    public static InterfaceManager Instance { get; private set; }
+    private GameManager gameManager;
+    private GameExitManager gameExitManager;
+    private Scenemanager sceneManager;
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // keeps script accessable accross scene changes
+       
+    }
+    public void AutoHookupButtons()
+    {
+        Button startButton = GameObject.Find("StartGame")?.GetComponent<Button>();
+
+        if (startButton != null)
+        {
+            startButton.onClick.RemoveAllListeners();
+            startButton.onClick.AddListener(sceneManager.onStart);
+        }
+        Button nextButton = GameObject.Find("nextLevel")?.GetComponent<Button>();
+
+        if (nextButton != null)
+        {
+            nextButton.onClick.RemoveAllListeners();
+            nextButton.onClick.AddListener(sceneManager.onLoadNextLevel);
+        }
+        Button menuButton = GameObject.Find("Menu")?.GetComponent<Button>();
+
+        if (menuButton != null)
+        {
+            menuButton.onClick.RemoveAllListeners();
+            menuButton.onClick.AddListener(sceneManager.onMenu);
+        }
+        Button level1Button = GameObject.Find("Level1")?.GetComponent<Button>();
+
+        if (level1Button != null)
+        {
+            level1Button.onClick.RemoveAllListeners();
+            level1Button.onClick.AddListener(sceneManager.onLevel1);
+        }
+        Button level2Button = GameObject.Find("level2")?.GetComponent<Button>();
+
+        if (level2Button != null)
+        {
+            level2Button.onClick.RemoveAllListeners();
+            level2Button.onClick.AddListener(sceneManager.onLevel2);
+        }
+        Button level3Button = GameObject.Find("level3")?.GetComponent<Button>();
+
+        if (level3Button != null)
+        {
+            level3Button.onClick.RemoveAllListeners();
+            level3Button.onClick.AddListener(sceneManager.onLevel3);
+        }
+        Button ShopButton = GameObject.Find("Shop")?.GetComponent<Button>();
+
+        if (ShopButton != null)
+        {
+            ShopButton.onClick.RemoveAllListeners();
+            ShopButton.onClick.AddListener(sceneManager.onShop);
+        }
+        Button ExitShopButton = GameObject.Find("ExitShop")?.GetComponent<Button>();
+
+        if (ExitShopButton != null)
+        {
+            ExitShopButton.onClick.RemoveAllListeners();
+            ExitShopButton.onClick.AddListener(sceneManager.onExitShop);
+        }
+        Button QuitButton = GameObject.Find("Quit")?.GetComponent<Button>();
+
+        if (QuitButton != null)
+        {
+            QuitButton.onClick.RemoveAllListeners();
+            if (GameExitManager.Instance != null)
+            {
+                QuitButton.onClick.AddListener(GameExitManager.Instance.Ongameexit);
+            }
+        }
+        if (GameManager.Instance != null)
+        {
+            Button takeDamageButton = GameObject.Find("takeDamage")?.GetComponent<Button>();
+            if (takeDamageButton != null)
+            {
+                takeDamageButton.onClick.RemoveAllListeners();
+                takeDamageButton.onClick.AddListener(GameManager.Instance.onTakeDamage);
+            }
+            Button HealButton = GameObject.Find("Heal")?.GetComponent<Button>();
+            if (HealButton != null)
+            {
+                HealButton.onClick.RemoveAllListeners();
+                HealButton.onClick.AddListener(GameManager.Instance.onTakeHealing);
+            }
+            Button AddItemButton = GameObject.Find("AddItem")?.GetComponent<Button>();
+            if (AddItemButton != null)
+            {
+                AddItemButton.onClick.RemoveAllListeners();
+                AddItemButton.onClick.AddListener(GameManager.Instance.onAddItem);
+            }
+            Button removeItemButton = GameObject.Find("removeItem")?.GetComponent<Button>();
+            if (removeItemButton != null)
+            {
+                removeItemButton.onClick.RemoveAllListeners();
+                removeItemButton.onClick.AddListener(GameManager.Instance.onRemoveItem);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //// Start is called once before the first execution of Update after the MonoBehaviour is created
+    //void Start()
+    //{
+
+    //}
+
+    //// Update is called once per frame
+    //void Update()
+    //{
+
+    //}
+}

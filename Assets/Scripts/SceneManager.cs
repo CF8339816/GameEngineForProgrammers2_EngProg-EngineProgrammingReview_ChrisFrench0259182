@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,8 +13,10 @@ using UnityEngine.UI;
 #endregion
 public class Scenemanager : MonoBehaviour
 {
+    public static Scenemanager Instance { get; private set; }
     private GameManager gameManager;
     private GameExitManager gameExitManager;
+    private InterfaceManager interfaceManager;
     private const int MAIN_INDEX = 0;
     private const int MENU_INDEX = 1;
     private const int LEVEL_1_INDEX = 2;
@@ -23,203 +26,97 @@ public class Scenemanager : MonoBehaviour
     private const int PLAYER_INDEX = 6;
     private const int HUD_INDEX = 7;
     private const int ENVIRONMENT_INDEX = 8;
-
     private int RETURNLEVEL_INDEX;
     public int ReturnIndex;
-
-
-
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // keeps script accessable accross scene changes
+       
+        SceneManager.LoadScene(MENU_INDEX, LoadSceneMode.Additive);
+    }
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        AutoHookupButtons();
-    }
-    private void AutoHookupButtons()
-    {
-        Button startButton = GameObject.Find("StartGame")?.GetComponent<Button>();
-        if (startButton != null)
+        interfaceManager = FindFirstObjectByType<InterfaceManager>();// looks for interface manager in scene
+        if (interfaceManager != null)
         {
-            startButton.onClick.RemoveAllListeners();
-            startButton.onClick.AddListener(onStart);
-        }
-        Button nextButton = GameObject.Find("nextLevel")?.GetComponent<Button>();
-        if (nextButton != null)
-        {
-            nextButton.onClick.RemoveAllListeners();
-            nextButton.onClick.AddListener(onLoadNextLevel);
-        }
-        Button menuButton = GameObject.Find("Menu")?.GetComponent<Button>();
-        if (menuButton != null)
-        {
-            menuButton.onClick.RemoveAllListeners();
-            menuButton.onClick.AddListener(onMenu);
-        }
-        Button level1Button = GameObject.Find("Level1")?.GetComponent<Button>();
-        if (level1Button != null)
-        {
-            level1Button.onClick.RemoveAllListeners();
-            level1Button.onClick.AddListener(onLevel1);
-        }
-        Button level2Button = GameObject.Find("level2")?.GetComponent<Button>();
-        if (level2Button != null)
-        {
-            level2Button.onClick.RemoveAllListeners();
-            level2Button.onClick.AddListener(onLevel2);
-        }
-        Button level3Button = GameObject.Find("level3")?.GetComponent<Button>();
-        if (level3Button != null)
-        {
-            level3Button.onClick.RemoveAllListeners();
-            level3Button.onClick.AddListener(onLevel3);
-        }
-        Button ShopButton = GameObject.Find("Shop")?.GetComponent<Button>();
-        if (level3Button != null)
-        {
-            level3Button.onClick.RemoveAllListeners();
-            level3Button.onClick.AddListener(onShop);
-        }
-
-        Button ExitShopButton = GameObject.Find("ExitShop")?.GetComponent<Button>();
-        if (level3Button != null)
-        {
-            level3Button.onClick.RemoveAllListeners();
-            level3Button.onClick.AddListener(onExitShop);
-        }
-
-
-        Button QuitButton = GameObject.Find("Quit")?.GetComponent<Button>();
-        QuitButton.onClick.AddListener(ServiceHub.Instance.gameExitManager.Ongameexit);
-        if (QuitButton != null)
-        {
-            QuitButton.onClick.RemoveAllListeners();
-
-
-            if (GameExitManager.Instance != null)
-            {
-                QuitButton.onClick.AddListener(GameExitManager.Instance.Ongameexit);
-            }
-        }
-        if (GameManager.Instance != null)
-        {
-            Button takeDamageButton = GameObject.Find("takeDamage")?.GetComponent<Button>();
-            if (takeDamageButton != null)
-            {
-                takeDamageButton.onClick.RemoveAllListeners();
-                takeDamageButton.onClick.AddListener(GameManager.Instance.onTakeDamage);
-            }
-            Button HealButton = GameObject.Find("Heal")?.GetComponent<Button>();
-            if (HealButton != null)
-            {
-                HealButton.onClick.RemoveAllListeners();
-                HealButton.onClick.AddListener(GameManager.Instance.onTakeHealing);
-            }
-            Button AddItemButton = GameObject.Find("AddItem")?.GetComponent<Button>();
-            if (AddItemButton != null)
-            {
-                AddItemButton.onClick.RemoveAllListeners();
-                AddItemButton.onClick.AddListener(GameManager.Instance.onAddItem);
-            }
-            Button removeItemButton = GameObject.Find("removeItem")?.GetComponent<Button>();
-            if (removeItemButton != null)
-            {
-                removeItemButton.onClick.RemoveAllListeners();
-                removeItemButton.onClick.AddListener(GameManager.Instance.onRemoveItem);
-            }
+            interfaceManager.AutoHookupButtons();
         }
     }
     public void LoadLevelByIndex(int index)
     {
-        if (index == 0) //&& index < SceneManager.sceneCountInBuildSettings)
-        {
-            LoadLevelByIndex(MAIN_INDEX);
-            LoadLevelByIndex(MENU_INDEX);
-        }
-        else if ((index == 2 /*&& index < SceneManager.sceneCountInBuildSettings*/)|| (index == 3/* && index < SceneManager.sceneCountInBuildSettings*/)|| (index == 4 /*&& index < SceneManager.sceneCountInBuildSettings*/) || (index == 5 /*&& index < SceneManager.sceneCountInBuildSettings*/))
-        {
-            SceneManager.LoadScene(index); 
-        }
-        else
+      if (index >= 0 && index < SceneManager.sceneCountInBuildSettings)
         { 
-            SceneManager.LoadScene(index); 
-        }
+            SceneManager.LoadScene(index);
+        }      
     }
     public void onLevel1()
     {
-        LoadLevelByIndex(LEVEL_1_INDEX );
-        LoadLevelByIndex(MENU_INDEX);
-        LoadLevelByIndex(HUD_INDEX );   
-        LoadLevelByIndex(PLAYER_INDEX);
-        LoadLevelByIndex(ENVIRONMENT_INDEX);
+        SceneManager.LoadScene(LEVEL_1_INDEX, LoadSceneMode.Single);
+        AddMePls();
     }
     public void onLevel2()
     {
-        LoadLevelByIndex(LEVEL_2_INDEX);
-        LoadLevelByIndex(MENU_INDEX);
-        LoadLevelByIndex(HUD_INDEX);
-        LoadLevelByIndex(PLAYER_INDEX);
-        LoadLevelByIndex(ENVIRONMENT_INDEX);
+        SceneManager.LoadScene(LEVEL_2_INDEX, LoadSceneMode.Single);
+        AddMePls();
     }
     public void onLevel3()
     {
-        LoadLevelByIndex(LEVEL_3_INDEX);
-        LoadLevelByIndex(MENU_INDEX);
-        LoadLevelByIndex(HUD_INDEX);
-        LoadLevelByIndex(PLAYER_INDEX);
-        LoadLevelByIndex(ENVIRONMENT_INDEX);
+        SceneManager.LoadScene(LEVEL_3_INDEX, LoadSceneMode.Single);
+        AddMePls();
     }
     public void onMenu()
     {
-        LoadLevelByIndex(MAIN_INDEX);
-        LoadLevelByIndex(MENU_INDEX);
+        SceneManager.LoadScene(MAIN_INDEX, LoadSceneMode.Single);
+        SceneManager.LoadScene(MENU_INDEX, LoadSceneMode.Additive);
     }
     public void onShop()
     {
         ReturnIndex = SceneManager.GetActiveScene().buildIndex;
-       
-        LoadLevelByIndex(SHOP_INDEX);
-        LoadLevelByIndex(MENU_INDEX);
-        LoadLevelByIndex(HUD_INDEX);
-        LoadLevelByIndex(PLAYER_INDEX);
-        LoadLevelByIndex(ENVIRONMENT_INDEX);
+        SceneManager.LoadScene(SHOP_INDEX, LoadSceneMode.Single);
+        AddMePls(); 
     }
     public void onExitShop()
-    { 
+    {
         RETURNLEVEL_INDEX = ReturnIndex;
-       
-        LoadLevelByIndex(RETURNLEVEL_INDEX);
-        
-        LoadLevelByIndex(MENU_INDEX);
-        LoadLevelByIndex(HUD_INDEX);
-        LoadLevelByIndex(PLAYER_INDEX);
-        LoadLevelByIndex(ENVIRONMENT_INDEX);
+        SceneManager.LoadScene(RETURNLEVEL_INDEX, LoadSceneMode.Single);
+        AddMePls();
     }
     public void onStart()
     {
-        if (GameManager.Instance != null);
-        GameManager.Instance.onResetStats();
-        onLevel1();
-        LoadLevelByIndex(MENU_INDEX);
-        LoadLevelByIndex(HUD_INDEX);
-        LoadLevelByIndex(PLAYER_INDEX);
-        LoadLevelByIndex(ENVIRONMENT_INDEX);
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.onResetStats();
+        }
+        onLevel1();      
     }
     public void onLoadNextLevel()
     {
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
         LoadLevelByIndex(nextIndex);
-        LoadLevelByIndex(MENU_INDEX);
-        LoadLevelByIndex(HUD_INDEX);
-        LoadLevelByIndex(PLAYER_INDEX);
-        LoadLevelByIndex(ENVIRONMENT_INDEX);
+        AddMePls();
+    }
+
+    public void AddMePls()
+    {
+        SceneManager.LoadScene(MENU_INDEX, LoadSceneMode.Additive);
+        SceneManager.LoadScene(HUD_INDEX, LoadSceneMode.Additive);
+        SceneManager.LoadScene(PLAYER_INDEX, LoadSceneMode.Additive);
+        SceneManager.LoadScene(ENVIRONMENT_INDEX, LoadSceneMode.Additive);
     }
 }
+
 

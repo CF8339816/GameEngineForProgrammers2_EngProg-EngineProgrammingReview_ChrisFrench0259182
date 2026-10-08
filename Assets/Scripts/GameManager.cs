@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private GameExitManager gameExitManager;
     private ServiceHub serviceHub;
     private Scenemanager sceneManager;
+    private InterfaceManager interfaceManager;
     [Header("text output")]
     public TextMeshProUGUI textCurrentLevel;
     public TextMeshProUGUI textHealthText;
@@ -50,7 +51,8 @@ public class GameManager : MonoBehaviour
         serviceHub = Object.FindFirstObjectByType<ServiceHub>();
         sceneManager = Object.FindFirstObjectByType<Scenemanager>();
         gameExitManager = Object.FindFirstObjectByType<GameExitManager>();
-
+        interfaceManager = Object.FindFirstObjectByType<InterfaceManager>();
+        gameExitManager = Object.FindFirstObjectByType<GameExitManager>();
 
 
         onResetStats();

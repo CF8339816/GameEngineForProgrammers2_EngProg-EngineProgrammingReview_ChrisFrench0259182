@@ -121,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 384334125079340779, guid: db0c2d6be9dcf3a42b8a6bec5c2d46fa, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: onAddItem
         m_Mode: 1
@@ -254,9 +254,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6275552335339516823, guid: db0c2d6be9dcf3a42b8a6bec5c2d46fa, type: 3}
         m_TargetAssemblyTypeName: Scenemanager, Assembly-CSharp
-        m_MethodName: onMenu
+        m_MethodName: onExitShop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -661,7 +661,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 384334125079340779, guid: db0c2d6be9dcf3a42b8a6bec5c2d46fa, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: onRemoveItem
         m_Mode: 1
