@@ -50,10 +50,16 @@ public class Scenemanager : MonoBehaviour
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        interfaceManager = FindFirstObjectByType<InterfaceManager>();// looks for interface manager in scene
-        if (interfaceManager != null)
+        if (scene.buildIndex == MAIN_INDEX ||scene.buildIndex == LEVEL_1_INDEX || scene.buildIndex == LEVEL_2_INDEX || scene.buildIndex == LEVEL_3_INDEX || scene.buildIndex == SHOP_INDEX)
         {
-            interfaceManager.AutoHookupButtons();
+
+            interfaceManager = FindFirstObjectByType<InterfaceManager>();// finds interface manager
+
+            if (interfaceManager != null)
+            {
+                interfaceManager.AutoHookupButtons();
+            }
+
         }
     }
     public void LoadLevelByIndex(int index)
@@ -101,7 +107,7 @@ public class Scenemanager : MonoBehaviour
         {
             GameManager.Instance.onResetStats();
         }
-        onLevel1();      
+        onLevel1();
     }
     public void onLoadNextLevel()
     {
