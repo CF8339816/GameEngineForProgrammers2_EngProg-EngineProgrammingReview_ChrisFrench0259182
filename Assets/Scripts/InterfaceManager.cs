@@ -31,7 +31,8 @@ public class InterfaceManager : MonoBehaviour
 
     }
     private Button ButtonHunter(string buttonName)
-    {        
+    {
+        Debug.Log("🎯 Found  BH found");
         Button[] allActiveAndInactiveButtons = Resources.FindObjectsOfTypeAll<Button>();
        
         foreach (Button btn in allActiveAndInactiveButtons)
@@ -47,7 +48,6 @@ public class InterfaceManager : MonoBehaviour
         }       
         return null;
     }
-
     public void AutoHookupButtons()
     {
         if (Scenemanager.Instance == null)

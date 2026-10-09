@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -112,8 +112,14 @@ public class GameManager : MonoBehaviour
         currentHealthPercentage = Mathf.RoundToInt((currentHealth / maxHealth) * 100);
     }
     public void onAddItem()
-    {
+    {        Debug.Log("🎯 Found and executed add");
         if (InventoryslotsUsed < InventoryBarMax) { InventoryslotsUsed++; }
+
+ 
+            else
+            {
+                Debug.LogWarning("❌ Could NOTaddiecakes");
+            }
     }
     public void onRemoveItem()
     {

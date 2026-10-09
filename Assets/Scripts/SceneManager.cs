@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,7 +30,8 @@ public class Scenemanager : MonoBehaviour
     private int RETURNLEVEL_INDEX;
     public int ReturnIndex;
     void Awake()
-    {
+    {  
+       Debug.Log("Scenemanager  awakening...");
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -39,10 +40,12 @@ public class Scenemanager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject); // keeps script accessable accross scene changes
         SceneManager.LoadScene(ENVIRONMENT_INDEX, LoadSceneMode.Additive);
+        Debug.Log(" Menu  awakening...");
         SceneManager.LoadScene(MENU_INDEX, LoadSceneMode.Additive);
+        Debug.Log(" scene HUD  awakening...");
         SceneManager.LoadScene(HUD_INDEX, LoadSceneMode.Additive); 
         SceneManager.LoadScene(PLAYER_INDEX, LoadSceneMode.Additive);
-
+        Debug.Log("Scenemanager  done.");
     }
     private void OnEnable()
     {
