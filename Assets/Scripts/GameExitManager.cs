@@ -30,7 +30,17 @@ public class GameExitManager : MonoBehaviour
     }
     private void Update()
     {
-        if (exitCountdownText == null)   {   exitCountdownText = GameObject.Find("exitCountdownText")?.GetComponent<TextMeshProUGUI>();   }
+     
+    }
+    public void ConnectExitUI()
+    {
+        exitCountdownText = GameObject.Find("exitCountdownText")?.GetComponent<TextMeshProUGUI>();
+
+     
+        if (!isExiting && exitCountdownText != null)// ensures countdown only displays on game exit
+        {
+            exitCountdownText.text = "";
+        }
     }
     public void Ongameexit()
     {
@@ -44,7 +54,10 @@ public class GameExitManager : MonoBehaviour
     {
         while (Countdown > 0)
         {
-            exitCountdownText.text = "Game Exit in: " + Mathf.Ceil(Countdown).ToString();// displays the countdown output in an always rounded up to whole int
+            if (exitCountdownText != null)
+            {
+                exitCountdownText.text = "Game Exit in: " + Mathf.Ceil(Countdown).ToString();
+            }
             yield return null;
             Countdown -= Time.deltaTime;
         }

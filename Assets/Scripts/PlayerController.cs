@@ -29,9 +29,12 @@ public class PlayerController : MonoBehaviour
     }
     private void OnDisable()
     {
-        inputActions.Player.Move.performed -= OnMoveInput;
-        inputActions.Player.Move.canceled -= OnMoveStopped;
-        inputActions.Player.Disable();
+        if (inputActions != null)
+        {
+            inputActions.Player.Move.performed -= OnMoveInput;
+            inputActions.Player.Move.canceled -= OnMoveStopped;
+            inputActions.Player.Disable();
+        }
     }
     private void Update()
     {
@@ -47,6 +50,8 @@ public class PlayerController : MonoBehaviour
     }
     private void MovePlayer()
     {
+        if (characterController == null) { return;  }
+
         Vector3 direction = new Vector3(moveInput.x, 0f, moveInput.y);
         characterController.Move(direction * moveSpeed * Time.deltaTime);
     }

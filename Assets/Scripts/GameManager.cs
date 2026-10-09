@@ -59,19 +59,19 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        FindUIElementsInNewScene(); 
+      
         UpdateBagSpace();
         UpdateHealthBar();
         UpdateCurrentLevelOutput();
     }
-    private void FindUIElementsInNewScene()// finds the ui entries after destroyed to re-valuate them
-    {        
-        if (textHealthText == null) textHealthText = GameObject.Find("HealthText")?.GetComponent<TextMeshProUGUI>();
-        if (textInventoryAvaillabilityText == null) textInventoryAvaillabilityText = GameObject.Find("InventoryAvaillabilityText")?.GetComponent<TextMeshProUGUI>();
-        if (HealthBar == null) HealthBar = GameObject.Find("HealthBar")?.GetComponent<Slider>();
-        if (InventoryCapacity == null) InventoryCapacity = GameObject.Find("InventoryCapacity")?.GetComponent<Slider>();
-        if (textCurrentLevel == null) textCurrentLevel = GameObject.Find("CurrentLevel")?.GetComponent<TextMeshProUGUI>();
-
+    public void ConnectUI()// finds the ui entries after destroyed to re-valuate them
+    {
+        textHealthText = GameObject.Find("HealthText")?.GetComponent<TextMeshProUGUI>();
+        textInventoryAvaillabilityText = GameObject.Find("InventoryAvaillabilityText")?.GetComponent<TextMeshProUGUI>();
+        HealthBar = GameObject.Find("HealthBar")?.GetComponent<Slider>();
+        InventoryCapacity = GameObject.Find("InventoryCapacity")?.GetComponent<Slider>();
+        textCurrentLevel = GameObject.Find("CurrentLevel")?.GetComponent<TextMeshProUGUI>();
+         CalculateHealthPercentage();
     }
     public void UpdateCurrentLevelOutput()
     {
@@ -83,12 +83,14 @@ public class GameManager : MonoBehaviour
     }
     public void UpdateBagSpace()
     {
+        if (InventoryCapacity == null) { return; }
         InventorySpaceAvailable = InventoryBarMax - InventoryslotsUsed;
         InventoryCapacity.value = InventoryslotsUsed;
         textInventoryAvaillabilityText.text = "Slots available" + InventorySpaceAvailable.ToString() + "\nInventory used: " + InventoryslotsUsed.ToString() + "/" + InventoryBarMax.ToString();
     }
     public void UpdateHealthBar()
     {
+        if (HealthBar == null)  {  return; }
         healtBarOutput = currentHealthPercentage;
         HealthBar.value = healtBarOutput;
         textHealthText.text = "Health %: " + currentHealthPercentage.ToString() + "\nHealth: " + currentHealth.ToString()  +"/" + maxHealth.ToString();
