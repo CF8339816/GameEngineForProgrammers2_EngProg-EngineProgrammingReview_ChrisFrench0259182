@@ -18,6 +18,22 @@ public class InterfaceManager : MonoBehaviour
     private GameManager gameManager;
     private GameExitManager gameExitManager;
     //private Scenemanager sceneManager;
+    [SerializeField] private Button Buy;
+    [SerializeField] private Button Heal;
+    [SerializeField] private Button takeDamage;
+    [SerializeField] private Button removeItem;
+    [SerializeField] private Button Level1;
+    [SerializeField] private Button level2;
+    [SerializeField] private Button level3;
+    [SerializeField] private Button Sell;
+    [SerializeField] private Button Quit;
+    [SerializeField] private Button AddItem;
+    [SerializeField] private Button ExitShop;
+    [SerializeField] private Button Shop;
+    [SerializeField] private Button Menu;
+    [SerializeField] private Button StartGame;
+    [SerializeField] private Button NextLevel;
+
 
     void Awake()
     {
@@ -30,25 +46,25 @@ public class InterfaceManager : MonoBehaviour
         DontDestroyOnLoad(gameObject); // keeps script accessable accross scene changes
 
     }
-    private Button ButtonHunter(string buttonName)
-    {
-        Debug.Log("🎯 Found  BH found");
-        Button[] allActiveAndInactiveButtons = Resources.FindObjectsOfTypeAll<Button>();
+    //private Button ButtonHunter(string buttonName)
+    //{
+    //    Debug.Log("🎯 Found  BH found");
+    //    Button[] allActiveAndInactiveButtons = Resources.FindObjectsOfTypeAll<Button>();
        
-        foreach (Button btn in allActiveAndInactiveButtons)
-        {
-            if (btn.gameObject.name == buttonName)
-            {
+    //    foreach (Button btn in allActiveAndInactiveButtons)
+    //    {
+    //        if (btn.gameObject.name == buttonName)
+    //        {
                
-                if (btn.gameObject.scene.isLoaded)
-                {
-                    return btn;
-                }
-            }
-        }       
-        return null;
-    }
-    public void AutoHookupButtons()
+    //            if (btn.gameObject.scene.isLoaded)
+    //            {
+    //                return btn;
+    //            }
+    //        }
+    //    }       
+    //    return null;
+    //}
+    public void AutoHookupButtons()//)
     {
         if (Scenemanager.Instance == null)
         {
@@ -59,11 +75,11 @@ public class InterfaceManager : MonoBehaviour
         Scenemanager sceneManager = Scenemanager.Instance;// reinitalize the scene manager
 
 
-        Button startButton = ButtonHunter("StartGame");
-        if (startButton != null)
+       // Button startButton = ButtonHunter("StartGame");
+        if (StartGame != null)
         {
-            startButton.onClick.RemoveAllListeners();
-            startButton.onClick.AddListener(sceneManager.onStart);
+            StartGame.onClick.RemoveAllListeners();
+            StartGame.onClick.AddListener(sceneManager.onStart);
             Debug.Log("🎯 Found and linked: StartGame");
         }
         else
@@ -71,11 +87,11 @@ public class InterfaceManager : MonoBehaviour
             Debug.LogWarning("❌ Could NOT find Button GameObject named: StartGame");
         }
 
-        Button nextButton = ButtonHunter("nextLevel");
-        if (nextButton != null)
+       // Button nextButton = ButtonHunter("nextLevel");
+        if (NextLevel != null)
         {
-            nextButton.onClick.RemoveAllListeners();
-            nextButton.onClick.AddListener(sceneManager.onLoadNextLevel);
+            NextLevel.onClick.RemoveAllListeners();
+            NextLevel.onClick.AddListener(sceneManager.onLoadNextLevel);
             Debug.Log("🎯 Found and linked: nextLevel");
         }
         else
@@ -83,11 +99,11 @@ public class InterfaceManager : MonoBehaviour
             Debug.LogWarning("❌ Could NOT find Button GameObject named: nextLevel");
         }
 
-        Button menuButton = ButtonHunter("Menu");
-        if (menuButton != null)
+      //  Button menuButton = ButtonHunter("Menu");
+        if (Menu != null)
         {
-            menuButton.onClick.RemoveAllListeners();
-            menuButton.onClick.AddListener(sceneManager.onMenu);
+            Menu.onClick.RemoveAllListeners();
+            Menu.onClick.AddListener(sceneManager.onMenu);
             Debug.Log("🎯 Found and linked: Menu");
         }
         else
@@ -95,11 +111,11 @@ public class InterfaceManager : MonoBehaviour
             Debug.LogWarning("❌ Could NOT find Button GameObject named: Menu");
         }
 
-        Button level1Button = ButtonHunter("Level1");
-        if (level1Button != null)
+       // Button level1Button = ButtonHunter("Level1");
+        if (Level1 != null)
         {
-            level1Button.onClick.RemoveAllListeners();
-            level1Button.onClick.AddListener(sceneManager.onLevel1);
+            Level1.onClick.RemoveAllListeners();
+            Level1.onClick.AddListener(sceneManager.onLevel1);
             Debug.Log("🎯 Found and linked: Level1");
         }
         else
@@ -107,11 +123,11 @@ public class InterfaceManager : MonoBehaviour
             Debug.LogWarning("❌ Could NOT find Button GameObject named: Level1");
         }
 
-        Button level2Button = ButtonHunter("level2");
-        if (level2Button != null)
+       // Button level2Button = ButtonHunter("level2");
+        if (level2 != null)
         {
-            level2Button.onClick.RemoveAllListeners();
-            level2Button.onClick.AddListener(sceneManager.onLevel2);
+            level2.onClick.RemoveAllListeners();
+            level2.onClick.AddListener(sceneManager.onLevel2);
             Debug.Log("🎯 Found and linked: level2");
         }
         else
@@ -119,11 +135,11 @@ public class InterfaceManager : MonoBehaviour
             Debug.LogWarning("❌ Could NOT find Button GameObject named: level2");
         }
 
-        Button level3Button = ButtonHunter("level3");
-        if (level3Button != null)
+       // Button level3Button = ButtonHunter("level3");
+        if (level3 != null)
         {
-            level3Button.onClick.RemoveAllListeners();
-            level3Button.onClick.AddListener(sceneManager.onLevel3);
+            level3.onClick.RemoveAllListeners();
+            level3.onClick.AddListener(sceneManager.onLevel3);
             Debug.Log("🎯 Found and linked: level3");
         }
         else
@@ -131,11 +147,11 @@ public class InterfaceManager : MonoBehaviour
             Debug.LogWarning("❌ Could NOT find Button GameObject named: level3");
         }
 
-        Button ShopButton = ButtonHunter("Shop");
-        if (ShopButton != null)
+       // Button ShopButton = ButtonHunter("Shop");
+        if (Shop != null)
         {
-            ShopButton.onClick.RemoveAllListeners();
-            ShopButton.onClick.AddListener(sceneManager.onShop);
+            Shop.onClick.RemoveAllListeners();
+            Shop.onClick.AddListener(sceneManager.onShop);
             Debug.Log("🎯 Found and linked: Shop");
         }
         else
@@ -143,11 +159,11 @@ public class InterfaceManager : MonoBehaviour
             Debug.LogWarning("❌ Could NOT find Button GameObject named: Shop");
         }
 
-        Button ExitShopButton = ButtonHunter("ExitShop");
-        if (ExitShopButton != null)
+       // Button ExitShopButton = ButtonHunter("ExitShop");
+        if (ExitShop != null)
         {
-            ExitShopButton.onClick.RemoveAllListeners();
-            ExitShopButton.onClick.AddListener(sceneManager.onExitShop);
+            ExitShop.onClick.RemoveAllListeners();
+            ExitShop.onClick.AddListener(sceneManager.onExitShop);
             Debug.Log("🎯 Found and linked: ExitShop");
         }
         else
@@ -155,13 +171,13 @@ public class InterfaceManager : MonoBehaviour
             Debug.LogWarning("❌ Could NOT find Button GameObject named: ExitShop");
         }
 
-        Button QuitButton = ButtonHunter("Quit");
-        if (QuitButton != null)
+       // Button QuitButton = ButtonHunter("Quit");
+        if (Quit != null)
         {
-            QuitButton.onClick.RemoveAllListeners();
+            Quit.onClick.RemoveAllListeners();
             if (GameExitManager.Instance != null)
             {
-                QuitButton.onClick.AddListener(GameExitManager.Instance.Ongameexit);
+                Quit.onClick.AddListener(GameExitManager.Instance.Ongameexit);
             }
             Debug.Log("🎯 Found and linked: Quit");
         }
@@ -172,11 +188,11 @@ public class InterfaceManager : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
-            Button takeDamageButton = ButtonHunter("takeDamage");
-            if (takeDamageButton != null)
+       //     Button takeDamageButton = ButtonHunter("takeDamage");
+            if (takeDamage != null)
             {
-                takeDamageButton.onClick.RemoveAllListeners();
-                takeDamageButton.onClick.AddListener(GameManager.Instance.onTakeDamage);
+                takeDamage.onClick.RemoveAllListeners();
+                takeDamage.onClick.AddListener(GameManager.Instance.onTakeDamage);
                 Debug.Log("🎯 Found and linked: takeDamage");
             }
             else
@@ -184,11 +200,11 @@ public class InterfaceManager : MonoBehaviour
                 Debug.LogWarning("❌ Could NOT find Button GameObject named: takeDamage");
             }
 
-            Button HealButton = ButtonHunter("Heal");
-            if (HealButton != null)
+         //   Button HealButton = ButtonHunter("Heal");
+            if (Heal != null)
             {
-                HealButton.onClick.RemoveAllListeners();
-                HealButton.onClick.AddListener(GameManager.Instance.onTakeHealing);
+                Heal.onClick.RemoveAllListeners();
+                Heal.onClick.AddListener(GameManager.Instance.onTakeHealing);
                 Debug.Log("🎯 Found and linked: Heal");
             }
             else
@@ -196,11 +212,11 @@ public class InterfaceManager : MonoBehaviour
                 Debug.LogWarning("❌ Could NOT find Button GameObject named: Heal");
             }
 
-            Button AddItemButton = ButtonHunter("AddItem");
-            if (AddItemButton != null)
+         //   Button AddItemButton = ButtonHunter("AddItem");
+            if (AddItem != null)
             {
-                AddItemButton.onClick.RemoveAllListeners();
-                AddItemButton.onClick.AddListener(GameManager.Instance.onAddItem);
+                //AddItem.onClick.RemoveAllListeners();
+                AddItem.onClick.AddListener(GameManager.Instance.onAddItem);
                 Debug.Log("🎯 Found and linked: AddItem");
             }
             else
@@ -208,11 +224,11 @@ public class InterfaceManager : MonoBehaviour
                 Debug.LogWarning("❌ Could NOT find Button GameObject named: AddItem");
             }
 
-            Button removeItemButton = ButtonHunter("removeItem");
-            if (removeItemButton != null)
+         //   Button removeItemButton = ButtonHunter("removeItem");
+            if (removeItem != null)
             {
-                removeItemButton.onClick.RemoveAllListeners();
-                removeItemButton.onClick.AddListener(GameManager.Instance.onRemoveItem);
+                removeItem.onClick.RemoveAllListeners();
+                removeItem.onClick.AddListener(GameManager.Instance.onRemoveItem);
                 Debug.Log("🎯 Found and linked: removeItem");
             }
             else
@@ -220,11 +236,11 @@ public class InterfaceManager : MonoBehaviour
                 Debug.LogWarning("❌ Could NOT find Button GameObject named: removeItem");
             }
 
-            Button BuyButton = ButtonHunter("Buy");
-            if (AddItemButton != null)
+         //   Button BuyButton = ButtonHunter("Buy");
+            if (Buy != null)
             {
-                AddItemButton.onClick.RemoveAllListeners();
-                AddItemButton.onClick.AddListener(GameManager.Instance.onAddItem);
+                Buy.onClick.RemoveAllListeners();
+                Buy.onClick.AddListener(GameManager.Instance.onAddItem);
                 Debug.Log("🎯 Found and linked: Buy");
             }
             else
@@ -232,11 +248,11 @@ public class InterfaceManager : MonoBehaviour
                 Debug.LogWarning("❌ Could NOT find Button GameObject named: Buy");
             }
 
-            Button SellButton = ButtonHunter("Sell");
-            if (removeItemButton != null)
+          //  Button SellButton = ButtonHunter("Sell");
+            if (Sell != null)
             {
-                removeItemButton.onClick.RemoveAllListeners();
-                removeItemButton.onClick.AddListener(GameManager.Instance.onRemoveItem);
+                Sell.onClick.RemoveAllListeners();
+                Sell.onClick.AddListener(GameManager.Instance.onRemoveItem);
                 Debug.Log("🎯 Found and linked: Sell");
             }
             else

@@ -44,14 +44,19 @@ public class GameManager : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
-            return;
+          // return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject); // maintains data              
+        DontDestroyOnLoad(gameObject); // maintains data
+        Debug.Log("🎯 Found and executed servicehub");
         serviceHub = Object.FindFirstObjectByType<ServiceHub>();
+        Debug.Log("🎯 Found and executed scenemanager");
         sceneManager = Object.FindFirstObjectByType<Scenemanager>();
-        gameExitManager = Object.FindFirstObjectByType<GameExitManager>();
+        //Debug.Log("🎯 Found and executed game  manager");
+        //gameManager = Object.FindFirstObjectByType<GameManager>();
+        Debug.Log("🎯 Found and executed interface manager");
         interfaceManager = Object.FindFirstObjectByType<InterfaceManager>();
+        Debug.Log("🎯 Found and executed game exit maager");
         gameExitManager = Object.FindFirstObjectByType<GameExitManager>();
 
 
@@ -118,7 +123,7 @@ public class GameManager : MonoBehaviour
  
             else
             {
-                Debug.LogWarning("❌ Could NOTaddiecakes");
+                Debug.Log("❌ Could NOTaddiecakes");
             }
     }
     public void onRemoveItem()

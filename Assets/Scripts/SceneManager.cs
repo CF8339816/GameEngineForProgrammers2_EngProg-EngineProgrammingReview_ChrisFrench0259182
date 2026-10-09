@@ -18,20 +18,30 @@ public class Scenemanager : MonoBehaviour
     private GameManager gameManager;
     private GameExitManager gameExitManager;
     private InterfaceManager interfaceManager;
-    private const int MAIN_INDEX = 0;
-    private const int MENU_INDEX = 1;
-    private const int LEVEL_1_INDEX = 2;
-    private const int LEVEL_2_INDEX = 3;
-    private const int LEVEL_3_INDEX = 4;
-    private const int SHOP_INDEX = 5;
-    private const int PLAYER_INDEX = 6;
-    private const int HUD_INDEX = 7;
-    private const int ENVIRONMENT_INDEX = 8;
+    [SerializeField] private const int MAIN_INDEX = 0;
+    [SerializeField] private const int MENU_INDEX = 1;
+    [SerializeField] private const int LEVEL_1_INDEX = 2;
+    [SerializeField] private const int LEVEL_2_INDEX = 3;
+    [SerializeField] private const int LEVEL_3_INDEX = 4;
+    [SerializeField] private const int SHOP_INDEX = 5;
+    [SerializeField] private const int PLAYER_INDEX = 6;
+    [SerializeField] private const int HUD_INDEX = 7;
+    [SerializeField] private const int ENVIRONMENT_INDEX = 8;
+
+    [SerializeField] private Scene MAIN;
+    [SerializeField] private Scene MENU;
+    [SerializeField] private Scene LEVEL1;
+    [SerializeField] private Scene LEVEL2;
+    [SerializeField] private Scene LEVEL3;
+    [SerializeField] private Scene SHOP;
+    [SerializeField] private Scene PLAYER;
+    [SerializeField] private Scene HUD;
+    [SerializeField] private Scene ENVIRONMENT;
     private int RETURNLEVEL_INDEX;
     public int ReturnIndex;
     void Awake()
-    {  
-       Debug.Log("Scenemanager  awakening...");
+    {
+        Debug.Log("Scenemanager  awakening...");
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -43,7 +53,7 @@ public class Scenemanager : MonoBehaviour
         Debug.Log(" Menu  awakening...");
         SceneManager.LoadScene(MENU_INDEX, LoadSceneMode.Additive);
         Debug.Log(" scene HUD  awakening...");
-        SceneManager.LoadScene(HUD_INDEX, LoadSceneMode.Additive); 
+        SceneManager.LoadScene(HUD_INDEX, LoadSceneMode.Additive);
         SceneManager.LoadScene(PLAYER_INDEX, LoadSceneMode.Additive);
         Debug.Log("Scenemanager  done.");
     }
@@ -55,6 +65,42 @@ public class Scenemanager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    //public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    Debug.Log($"Scene loaded: {scene.name}. connect ui...");
+    //    gameManager.ConnectUI();
+
+    //    Debug.Log($"Scene loaded: {scene.name}. Configuring buttons...");
+    //    foreach (GameObject root in scene.GetRootGameObjects())
+    //    {
+    //        Button[] buttons = root.GetComponentsInChildren<Button>(true);
+    //        foreach (Button button in buttons)
+    //        {
+    //            interfaceManager.AutoHookupButtons(button);
+    //        }
+    //    }
+
+    //}
+    //public int GetSceneIndexByName(string sceneName)
+    //{
+
+
+    //    string scenePath = $"Assets/Scenes/{sceneName}.unity";
+
+
+    //    int buildIndex = SceneUtility.GetBuildIndexByScenePath(scenePath);
+
+
+    //    if (buildIndex == -1)
+    //    {
+    //        Debug.LogError($"Scene '{sceneName}' was not found in Build Settings! Check your spelling or folder path.");
+    //    }
+
+    //    return buildIndex;
+    //}
+
+
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex == MAIN_INDEX)
@@ -134,82 +180,8 @@ public class Scenemanager : MonoBehaviour
         }
         yield return null;
 
-        CleanDuplicateSceneElements();
-
-        // 5. Direct link to our real global singleton instance to bind the buttons
-        if (InterfaceManager.Instance != null)
-        {
-            InterfaceManager.Instance.AutoHookupButtons();
-        }
-        else
-        {
-            interfaceManager = FindFirstObjectByType<InterfaceManager>();
-            if (interfaceManager != null) interfaceManager.AutoHookupButtons();
-        }
-    }
-
-    private void CleanDuplicateSceneElements()
-    {
-        Debug.Log("Scenemanager: Starting additive scene cleanup routine...");
-
-        // 1. Clean up duplicate Cameras (Very common cause for broken UI clicks)
-        Camera[] allCameras = FindObjectsByType<Camera>(FindObjectsSortMode.None);
-        if (allCameras.Length > 1)
-        {
-            // Keep the first camera (index 0), destroy the rest
-            for (int i = 1; i < allCameras.Length; i++)
-            {
-                Debug.Log($"[CLEANUP] Destroyed duplicate Camera on GameObject: {allCameras[i].gameObject.name}");
-                Destroy(allCameras[i].gameObject);
-            }
-        }
-
-        // Also clean up duplicate AudioListeners, as Unity flags warnings for multiples
-        AudioListener[] allListeners = FindObjectsByType<AudioListener>(FindObjectsSortMode.None);
-        if (allListeners.Length > 1)
-        {
-            for (int i = 1; i < allListeners.Length; i++)
-            {
-                Destroy(allListeners[i]); // Just remove the extra listener component
-            }
-        }
-
-        // 2. Clean up duplicate Directional Lights
-        Light[] allLights = FindObjectsByType<Light>(FindObjectsSortMode.None);
-        bool foundMainDirectionalLight = false;
-        foreach (Light light in allLights)
-        {
-            if (light.type == LightType.Directional)
-            {
-                if (!foundMainDirectionalLight)
-                {
-                    foundMainDirectionalLight = true; // Keep the first directional light we see
-                }
-                else
-                {
-                    Debug.Log($"[CLEANUP] Destroyed duplicate Directional Light: {light.gameObject.name}");
-                    Destroy(light.gameObject);
-                }
-            }
-        }
-
-        GameObject[] allObjects = FindObjectsByType<GameObject>(FindObjectsSortMode.None);
-        bool foundMainVolume = false;
-        foreach (GameObject go in allObjects)
-        {
-            // Checks if the object is named Global Volume or contains a Volume component
-            if (go.name.Contains("Global Volume") || go.name.Contains("PostProcess") || go.GetComponent("Volume") != null)
-            {
-                if (!foundMainVolume)
-                {
-                    foundMainVolume = true; // Keep the first one
-                }
-                else
-                {
-                    Debug.Log($"[CLEANUP] Destroyed duplicate Global Volume GameObject: {go.name}");
-                    Destroy(go);
-                }
-            }
-        }
+      
     }
 }
+
+    
