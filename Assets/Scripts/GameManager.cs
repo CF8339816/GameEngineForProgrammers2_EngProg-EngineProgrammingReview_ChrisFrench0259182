@@ -99,22 +99,28 @@ public class GameManager : MonoBehaviour
         healtBarOutput = currentHealthPercentage;
         HealthBar.value = healtBarOutput;
         textHealthText.text = "Health %: " + currentHealthPercentage.ToString() + "\nHealth: " + currentHealth.ToString()  +"/" + maxHealth.ToString();
+        Debug.Log($"🎯 health percentage = {currentHealthPercentage}");
+        Debug.Log($"🎯 health  = {healtBarOutput}");
     }
     public void onTakeDamage()
     {
         currentHealth -= DamageTaken;
         if (currentHealth <= 0)  {   currentHealth = 0;  }
         CalculateHealthPercentage();
+        Debug.Log($"🎯 damagee = {DamageTaken}");
     }
     public void onTakeHealing()
     {        
         currentHealth += healingDone;
        if (currentHealth >= maxHealth)  {  currentHealth = maxHealth;   }
-        CalculateHealthPercentage(); 
+        CalculateHealthPercentage();
+        Debug.Log($"🎯 Healing  = {healingDone}");
     }
     public void CalculateHealthPercentage()
     {
         currentHealthPercentage = Mathf.RoundToInt((currentHealth / maxHealth) * 100);
+         Debug.Log($"🎯 health percentage = {currentHealthPercentage}");
+       
     }
     public void onAddItem()
     {        Debug.Log("🎯 Found and executed add");

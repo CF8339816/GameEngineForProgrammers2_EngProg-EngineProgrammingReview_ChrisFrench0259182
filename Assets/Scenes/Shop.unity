@@ -233,60 +233,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1017710781
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1017710783}
-  - component: {fileID: 1017710782}
-  m_Layer: 0
-  m_Name: Scenemanager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1017710782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017710781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2435609c0c16f84095315574031d01e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Scenemanager
-  MAIN: {}
-  MENU: {}
-  LEVEL1: {}
-  LEVEL2: {}
-  LEVEL3: {}
-  SHOP: {}
-  PLAYER: {}
-  HUD: {}
-  ENVIRONMENT: {}
-  ReturnIndex: 0
---- !u!4 &1017710783
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017710781}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.00316, y: 811.2307, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1371144504
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,118 +345,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1790107129
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1790107131}
-  - component: {fileID: 1790107130}
-  - component: {fileID: 1790107134}
-  - component: {fileID: 1790107133}
-  - component: {fileID: 1790107132}
-  m_Layer: 0
-  m_Name: _ServiceHub
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1790107130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790107129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8450c9df566f6944fa17fd6f356b1d62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ServiceHub
-  customSceneManager: {fileID: 0}
-  gameManager: {fileID: 0}
-  gameExitManager: {fileID: 0}
-  interfaceManager: {fileID: 0}
-  eventSystemPrefab: {fileID: 0}
---- !u!4 &1790107131
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790107129}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.483398, y: 812.58813, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1790107132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790107129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae6337aa67bea4841ab9771f0cfc4eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameExitManager
-  ExitDelay: 5
-  exitCountdownText: {fileID: 0}
---- !u!114 &1790107133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790107129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2435609c0c16f84095315574031d01e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Scenemanager
-  MAIN: {}
-  MENU: {}
-  LEVEL1: {}
-  LEVEL2: {}
-  LEVEL3: {}
-  SHOP: {}
-  PLAYER: {}
-  HUD: {}
-  ENVIRONMENT: {}
-  ReturnIndex: 0
---- !u!114 &1790107134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790107129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d76deada3cc854e81ed42a4136fde4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  textCurrentLevel: {fileID: 0}
-  textHealthText: {fileID: 0}
-  textInventoryAvaillabilityText: {fileID: 0}
-  HealthBar: {fileID: 0}
-  InventoryCapacity: {fileID: 0}
-  HealthBarMax: 100
-  healingDone: 12
-  DamageTaken: 21
-  currentHealth: 0
-  maxHealth: 200
-  InventoryBarMax: 24
-  InventoryslotsUsed: 0
 --- !u!114 &3547158935804922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,17 +373,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6980892444683862922, guid: aa8f7759449fa4a458369a1dc86b787a, type: 3}
   m_PrefabInstance: {fileID: 1239805033138247950}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &49311715118115105 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2449926190781777916, guid: aa8f7759449fa4a458369a1dc86b787a, type: 3}
-  m_PrefabInstance: {fileID: 1239805033138247950}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1239805033138247950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -561,7 +384,7 @@ PrefabInstance:
     - target: {fileID: 2449926190781777916, guid: aa8f7759449fa4a458369a1dc86b787a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1790107134}
+      objectReference: {fileID: 0}
     - target: {fileID: 5111824161760683614, guid: aa8f7759449fa4a458369a1dc86b787a, type: 3}
       propertyPath: m_Name
       value: Buy
@@ -678,17 +501,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4102734166300764755, guid: e9421f5fb0ff0e9438bb7ccf34dda113, type: 3}
   m_PrefabInstance: {fileID: 3721753685037063575}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2760744524053194198 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 978837584024549703, guid: e9421f5fb0ff0e9438bb7ccf34dda113, type: 3}
-  m_PrefabInstance: {fileID: 3721753685037063575}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &3721753685037063575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -700,7 +512,7 @@ PrefabInstance:
     - target: {fileID: 978837584024549703, guid: e9421f5fb0ff0e9438bb7ccf34dda113, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1790107133}
+      objectReference: {fileID: 0}
     - target: {fileID: 4102734166300764755, guid: e9421f5fb0ff0e9438bb7ccf34dda113, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -802,8 +614,6 @@ GameObject:
   - component: {fileID: 8641917122477239675}
   - component: {fileID: 3547158935804922}
   - component: {fileID: 5151635767803309485}
-  - component: {fileID: 8641917122477239677}
-  - component: {fileID: 8641917122477239676}
   m_Layer: 5
   m_Name: ShopOverlay
   m_TagString: Untagged
@@ -833,17 +643,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6294703364171421612, guid: 3ab5f9a7ef729794f8bae7e1c0d970c0, type: 3}
   m_PrefabInstance: {fileID: 7046223497152162077}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7007319953801729150 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 828132985722702133, guid: 3ab5f9a7ef729794f8bae7e1c0d970c0, type: 3}
-  m_PrefabInstance: {fileID: 7046223497152162077}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &7046223497152162077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -855,7 +654,7 @@ PrefabInstance:
     - target: {fileID: 828132985722702133, guid: 3ab5f9a7ef729794f8bae7e1c0d970c0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1790107134}
+      objectReference: {fileID: 0}
     - target: {fileID: 5100271840778879212, guid: 3ab5f9a7ef729794f8bae7e1c0d970c0, type: 3}
       propertyPath: m_Name
       value: Sell
@@ -968,63 +767,10 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &8641917122477239676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4394728845011996508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d7d900e15e156e4e9f63f9ea12b0b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InterfaceManager
-  Buy: {fileID: 49311715118115105}
-  Heal: {fileID: 0}
-  takeDamage: {fileID: 0}
-  removeItem: {fileID: 0}
-  Level1: {fileID: 0}
-  level2: {fileID: 0}
-  level3: {fileID: 0}
-  Sell: {fileID: 7007319953801729150}
-  Quit: {fileID: 0}
-  AddItem: {fileID: 0}
-  ExitShop: {fileID: 2760744524053194198}
-  Shop: {fileID: 0}
-  Menu: {fileID: 0}
-  StartGame: {fileID: 0}
-  NextLevel: {fileID: 0}
---- !u!114 &8641917122477239677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4394728845011996508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d76deada3cc854e81ed42a4136fde4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  textCurrentLevel: {fileID: 0}
-  textHealthText: {fileID: 0}
-  textInventoryAvaillabilityText: {fileID: 0}
-  HealthBar: {fileID: 0}
-  InventoryCapacity: {fileID: 0}
-  HealthBarMax: 100
-  healingDone: 12
-  DamageTaken: 21
-  currentHealth: 0
-  maxHealth: 0
-  InventoryBarMax: 24
-  InventoryslotsUsed: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1790107131}
-  - {fileID: 1017710783}
   - {fileID: 2690214712905120014}
   - {fileID: 4470594}
   - {fileID: 1371144508}

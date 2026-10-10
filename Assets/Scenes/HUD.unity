@@ -119,118 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1790107129
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1790107131}
-  - component: {fileID: 1790107130}
-  - component: {fileID: 1790107134}
-  - component: {fileID: 1790107133}
-  - component: {fileID: 1790107132}
-  m_Layer: 0
-  m_Name: _ServiceHub
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1790107130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790107129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8450c9df566f6944fa17fd6f356b1d62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ServiceHub
-  customSceneManager: {fileID: 0}
-  gameManager: {fileID: 0}
-  gameExitManager: {fileID: 0}
-  interfaceManager: {fileID: 0}
-  eventSystemPrefab: {fileID: 0}
---- !u!4 &1790107131
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790107129}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.483398, y: 812.58813, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1790107132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790107129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae6337aa67bea4841ab9771f0cfc4eb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameExitManager
-  ExitDelay: 5
-  exitCountdownText: {fileID: 0}
---- !u!114 &1790107133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790107129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2435609c0c16f84095315574031d01e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Scenemanager
-  MAIN: {}
-  MENU: {}
-  LEVEL1: {}
-  LEVEL2: {}
-  LEVEL3: {}
-  SHOP: {}
-  PLAYER: {}
-  HUD: {}
-  ENVIRONMENT: {}
-  ReturnIndex: 0
---- !u!114 &1790107134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790107129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d76deada3cc854e81ed42a4136fde4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  textCurrentLevel: {fileID: 0}
-  textHealthText: {fileID: 0}
-  textInventoryAvaillabilityText: {fileID: 0}
-  HealthBar: {fileID: 0}
-  InventoryCapacity: {fileID: 0}
-  HealthBarMax: 100
-  healingDone: 12
-  DamageTaken: 21
-  currentHealth: 0
-  maxHealth: 200
-  InventoryBarMax: 24
-  InventoryslotsUsed: 0
 --- !u!1001 &432241215671257952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,17 +216,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d69f0b510a1e8941ae28098dd8e0b9d, type: 3}
---- !u!114 &432241215671257953 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6231224635752491528, guid: 3d69f0b510a1e8941ae28098dd8e0b9d, type: 3}
-  m_PrefabInstance: {fileID: 432241215671257952}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!224 &606891146053590397 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7935750754041429618, guid: 8bcb3c36171a5164b8ea399ea5ac4ab0, type: 3}
@@ -446,17 +323,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10e2b4df903dd344bb5cdeaee421b97b, type: 3}
---- !u!114 &1792113931713954406 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1059061101507966897, guid: 10e2b4df903dd344bb5cdeaee421b97b, type: 3}
-  m_PrefabInstance: {fileID: 1792113931713954405}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!223 &2041102194758055252
 Canvas:
   m_ObjectHideFlags: 0
@@ -581,17 +447,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea5ffde087807874b9eb578e02e478d5, type: 3}
---- !u!114 &2483720962614934978 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7282433332750113770, guid: ea5ffde087807874b9eb578e02e478d5, type: 3}
-  m_PrefabInstance: {fileID: 2483720962614934977}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!114 &2733891524792367316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,17 +589,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7208c78599331ae4f98bc2708234ffea, type: 3}
---- !u!114 &4600247713392170899 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8131029604429562595, guid: 7208c78599331ae4f98bc2708234ffea, type: 3}
-  m_PrefabInstance: {fileID: 4600247713392170898}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &4664237331699082670
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,8 +601,6 @@ GameObject:
   - component: {fileID: 2041102194758055252}
   - component: {fileID: 2733891524792367316}
   - component: {fileID: 4363853782510688496}
-  - component: {fileID: 5115846132396776874}
-  - component: {fileID: 5115846132396776873}
   m_Layer: 5
   m_Name: HudOverlay
   m_TagString: Untagged
@@ -803,57 +645,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &5115846132396776873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4664237331699082670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65d76deada3cc854e81ed42a4136fde4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  textCurrentLevel: {fileID: 0}
-  textHealthText: {fileID: 6999152800794042341}
-  textInventoryAvaillabilityText: {fileID: 8301987621156808105}
-  HealthBar: {fileID: 5945532593956268776}
-  InventoryCapacity: {fileID: 2483720962614934978}
-  HealthBarMax: 100
-  healingDone: 12
-  DamageTaken: 21
-  currentHealth: 0
-  maxHealth: 0
-  InventoryBarMax: 24
-  InventoryslotsUsed: 0
---- !u!114 &5115846132396776874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4664237331699082670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d7d900e15e156e4e9f63f9ea12b0b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InterfaceManager
-  Buy: {fileID: 0}
-  Heal: {fileID: 1792113931713954406}
-  takeDamage: {fileID: 432241215671257953}
-  removeItem: {fileID: 4600247713392170899}
-  Level1: {fileID: 0}
-  level2: {fileID: 0}
-  level3: {fileID: 0}
-  Sell: {fileID: 0}
-  Quit: {fileID: 0}
-  AddItem: {fileID: 9199252933484276801}
-  ExitShop: {fileID: 0}
-  Shop: {fileID: 0}
-  Menu: {fileID: 0}
-  StartGame: {fileID: 0}
-  NextLevel: {fileID: 0}
 --- !u!1001 &5945532593956268775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -979,17 +770,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bcb3c36171a5164b8ea399ea5ac4ab0, type: 3}
---- !u!114 &5945532593956268776 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4405863642406839141, guid: 8bcb3c36171a5164b8ea399ea5ac4ab0, type: 3}
-  m_PrefabInstance: {fileID: 5945532593956268775}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!224 &6201644499749649000 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8125328166635818495, guid: 4428128406a239b4dbb0c07aff4e8f1c, type: 3}
@@ -1092,17 +872,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9c8e816f1a057c4195b2e82987e5d3b, type: 3}
---- !u!114 &6999152800794042341 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2860420528149649645, guid: a9c8e816f1a057c4195b2e82987e5d3b, type: 3}
-  m_PrefabInstance: {fileID: 6999152800794042340}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &7220423857131524315 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4132822175572353759, guid: 3d69f0b510a1e8941ae28098dd8e0b9d, type: 3}
@@ -1205,17 +974,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4428128406a239b4dbb0c07aff4e8f1c, type: 3}
---- !u!114 &8301987621156808105 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1283721070283797619, guid: 4428128406a239b4dbb0c07aff4e8f1c, type: 3}
-  m_PrefabInstance: {fileID: 8301987621156808104}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!224 &8341538030796186992 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6211976981118904443, guid: a9c8e816f1a057c4195b2e82987e5d3b, type: 3}
@@ -1318,20 +1076,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5b6de0afc316584a92694ad58b5d035, type: 3}
---- !u!114 &9199252933484276801 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3153065179984172318, guid: b5b6de0afc316584a92694ad58b5d035, type: 3}
-  m_PrefabInstance: {fileID: 9199252933484276800}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1790107131}
   - {fileID: 5115846132396776872}

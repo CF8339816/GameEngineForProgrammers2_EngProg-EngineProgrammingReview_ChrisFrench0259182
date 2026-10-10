@@ -28,15 +28,15 @@ public class Scenemanager : MonoBehaviour
     [SerializeField] private const int HUD_INDEX = 7;
     [SerializeField] private const int ENVIRONMENT_INDEX = 8;
 
-    [SerializeField] private Scene MAIN;
-    [SerializeField] private Scene MENU;
-    [SerializeField] private Scene LEVEL1;
-    [SerializeField] private Scene LEVEL2;
-    [SerializeField] private Scene LEVEL3;
-    [SerializeField] private Scene SHOP;
-    [SerializeField] private Scene PLAYER;
-    [SerializeField] private Scene HUD;
-    [SerializeField] private Scene ENVIRONMENT;
+    //[SerializeField] private Scene MAIN;
+    //[SerializeField] private Scene MENU;
+    //[SerializeField] private Scene LEVEL1;
+    //[SerializeField] private Scene LEVEL2;
+    //[SerializeField] private Scene LEVEL3;
+    //[SerializeField] private Scene SHOP;
+    //[SerializeField] private Scene PLAYER;
+    //[SerializeField] private Scene HUD;
+    //[SerializeField] private Scene ENVIRONMENT;
     private int RETURNLEVEL_INDEX;
     public int ReturnIndex;
     void Awake()

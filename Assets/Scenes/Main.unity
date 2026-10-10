@@ -218,11 +218,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4186777381943633055, guid: 5fb4201da3663704d9ef9571a9469eca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.483398
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4186777381943633055, guid: 5fb4201da3663704d9ef9571a9469eca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 812.58813
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4186777381943633055, guid: 5fb4201da3663704d9ef9571a9469eca, type: 3}
       propertyPath: m_LocalPosition.z
@@ -357,15 +357,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1572661052379496211, guid: 83507f12f703ffa4aa5dede0a3d8af3c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.11855
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1572661052379496211, guid: 83507f12f703ffa4aa5dede0a3d8af3c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.41392
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1572661052379496211, guid: 83507f12f703ffa4aa5dede0a3d8af3c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.25087
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1572661052379496211, guid: 83507f12f703ffa4aa5dede0a3d8af3c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -534,11 +534,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5698955093621476631, guid: 6019dd02c2de7d249afe4cc99e92e293, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.48339
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5698955093621476631, guid: 6019dd02c2de7d249afe4cc99e92e293, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 812.58813
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5698955093621476631, guid: 6019dd02c2de7d249afe4cc99e92e293, type: 3}
       propertyPath: m_LocalPosition.z
@@ -791,10 +791,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1002636412217229155}
-  - {fileID: 1442553199077317769}
   - {fileID: 4846132447315015715}
+  - {fileID: 2550447130654404073}
+  - {fileID: 1442553199077317769}
   - {fileID: 4020225037047036769}
   - {fileID: 3577733752474283517}
-  - {fileID: 2550447130654404073}
   - {fileID: 7759798871389502994}
   - {fileID: 6665100549640295880}
