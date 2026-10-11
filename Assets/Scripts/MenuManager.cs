@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 #region coder & project
 /// <summary>
 /// NSCC GAME2025 / 4086 / Game Programming III(B)/ Doucette,Matthew
@@ -12,22 +14,32 @@ using UnityEngine.UI;
 /// 
 /// </summary>
 #endregion
-public class Scenemanager : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
-    public static Scenemanager Instance { get; private set; }
+
+    public static MenuManager Instance { get; private set; }
     private GameManager gameManager;
     private GameExitManager gameExitManager;
+    private ServiceHub serviceHub;
+    private SceneManager sceneManager;
+    private CustomSceneManager customSceneManager;
+    private HudManager hudManager;
+   // private MenuManager menuManager;
+    private ShopManager shopManager;
     private InterfaceManager interfaceManager;
-    [SerializeField] private const int MAIN_INDEX = 0;
-    [SerializeField] private const int MENU_INDEX = 1;
-    [SerializeField] private const int LEVEL_1_INDEX = 2;
-    [SerializeField] private const int LEVEL_2_INDEX = 3;
-    [SerializeField] private const int LEVEL_3_INDEX = 4;
-    [SerializeField] private const int SHOP_INDEX = 5;
-    [SerializeField] private const int PLAYER_INDEX = 6;
-    [SerializeField] private const int HUD_INDEX = 7;
-    [SerializeField] private const int ENVIRONMENT_INDEX = 8;
 
+    [SerializeField] private int MAIN_INDEX = 0;
+    [SerializeField] private int MENU_INDEX = 1;
+    [SerializeField] private int LEVEL_1_INDEX = 2;
+    [SerializeField] private int LEVEL_2_INDEX = 3;
+    [SerializeField] private int LEVEL_3_INDEX = 4;
+    [SerializeField] private int SHOP_INDEX = 5;
+    [SerializeField] private int PLAYER_INDEX = 6;
+    [SerializeField] private int HUD_INDEX = 7;
+    [SerializeField] private int ENVIRONMENT_INDEX = 8;
+
+    private int RETURNLEVEL_INDEX;
+    public int ReturnIndex;
     //[SerializeField] private Scene MAIN;
     //[SerializeField] private Scene MENU;
     //[SerializeField] private Scene LEVEL1;
@@ -37,18 +49,40 @@ public class Scenemanager : MonoBehaviour
     //[SerializeField] private Scene PLAYER;
     //[SerializeField] private Scene HUD;
     //[SerializeField] private Scene ENVIRONMENT;
-    private int RETURNLEVEL_INDEX;
-    public int ReturnIndex;
+
+
+
+    //private Button ButtonHunterMenu(string buttonName)
+    //{
+    //    Debug.Log("🎯 Found  BH found");
+    //    Button[] allActiveAndInactiveButtons = Resources.FindObjectsOfTypeAll<Button>();
+
+    //    foreach (Button btn in allActiveAndInactiveButtons)
+    //    {
+    //        if (btn.gameObject.name == buttonName)
+    //        {
+
+    //            if (btn.gameObject.scene.isLoaded)
+    //            {
+    //                return btn;
+    //            }
+    //        }
+    //    }       
+    //    return null;
+    //}
+
+
+
     void Awake()
     {
-        Debug.Log("Scenemanager  awakening...");
+        Debug.Log("CustomSceneManager awakening...");
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject); // keeps script accessable accross scene changes
+        DontDestroyOnLoad(gameObject); // keeps script accessible across scene changes
         SceneManager.LoadScene(ENVIRONMENT_INDEX, LoadSceneMode.Additive);
         Debug.Log(" Menu  awakening...");
         SceneManager.LoadScene(MENU_INDEX, LoadSceneMode.Additive);
@@ -57,61 +91,16 @@ public class Scenemanager : MonoBehaviour
         SceneManager.LoadScene(PLAYER_INDEX, LoadSceneMode.Additive);
         Debug.Log("Scenemanager  done.");
     }
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    //public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //private void OnEnable()
     //{
-    //    Debug.Log($"Scene loaded: {scene.name}. connect ui...");
-    //    gameManager.ConnectUI();
-
-    //    Debug.Log($"Scene loaded: {scene.name}. Configuring buttons...");
-    //    foreach (GameObject root in scene.GetRootGameObjects())
-    //    {
-    //        Button[] buttons = root.GetComponentsInChildren<Button>(true);
-    //        foreach (Button button in buttons)
-    //        {
-    //            interfaceManager.AutoHookupButtons(button);
-    //        }
-    //    }
-
+    //    SceneManager.sceneLoaded += OnSceneLoaded;
     //}
-    //public int GetSceneIndexByName(string sceneName)
+    //private void OnDisable()
     //{
-
-
-    //    string scenePath = $"Assets/Scenes/{sceneName}.unity";
-
-
-    //    int buildIndex = SceneUtility.GetBuildIndexByScenePath(scenePath);
-
-
-    //    if (buildIndex == -1)
-    //    {
-    //        Debug.LogError($"Scene '{sceneName}' was not found in Build Settings! Check your spelling or folder path.");
-    //    }
-
-    //    return buildIndex;
+    //    SceneManager.sceneLoaded -= OnSceneLoaded;
     //}
 
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.buildIndex == MAIN_INDEX)
-        {
-            interfaceManager = FindFirstObjectByType<InterfaceManager>();// finds interface manager
-            if (interfaceManager != null)
-            {
-                interfaceManager.AutoHookupButtons();
-            }
-        }
-    }
     public void LoadLevelByIndex(int index)
     {
         if (index >= 0 && index < SceneManager.sceneCountInBuildSettings)
@@ -179,9 +168,8 @@ public class Scenemanager : MonoBehaviour
             SceneManager.SetActiveScene(baseScene);
         }
         yield return null;
-
-      
     }
 }
 
     
+

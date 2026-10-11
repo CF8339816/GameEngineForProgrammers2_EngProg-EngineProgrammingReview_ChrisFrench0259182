@@ -14,9 +14,15 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+   
+    private GameManager gameManager;
     private GameExitManager gameExitManager;
     private ServiceHub serviceHub;
-    private Scenemanager sceneManager;
+    private SceneManager sceneManager;
+    private CustomSceneManager customSceneManager;
+    private HudManager hudManager;
+    private MenuManager menuManager;
+    private ShopManager shopManager;
     private InterfaceManager interfaceManager;
     [Header("text output")]
     public TextMeshProUGUI textCurrentLevel;
@@ -51,7 +57,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("🎯 Found and executed servicehub");
         serviceHub = Object.FindFirstObjectByType<ServiceHub>();
         Debug.Log("🎯 Found and executed scenemanager");
-        sceneManager = Object.FindFirstObjectByType<Scenemanager>();
+        customSceneManager = Object.FindFirstObjectByType<CustomSceneManager>();
         //Debug.Log("🎯 Found and executed game  manager");
         //gameManager = Object.FindFirstObjectByType<GameManager>();
         Debug.Log("🎯 Found and executed interface manager");

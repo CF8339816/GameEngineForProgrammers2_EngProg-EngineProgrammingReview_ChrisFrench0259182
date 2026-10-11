@@ -13,10 +13,17 @@ public class ServiceHub : MonoBehaviour
     public static ServiceHub Instance { get; private set; }// creates szervice hub instance 
 
     [Header("System References")]// defines other scripts
-    public Scenemanager customSceneManager;
-    public GameManager gameManager;
-    public GameExitManager gameExitManager;
-    public InterfaceManager interfaceManager;
+   // public Scenemanager customSceneManager;
+  
+    private GameManager gameManager;
+    private GameExitManager gameExitManager;
+    private ServiceHub serviceHub;
+    //private SceneManager sceneManager;
+    private CustomSceneManager customSceneManager;
+    private HudManager hudManager;
+    private MenuManager menuManager;
+    private ShopManager shopManager;
+    private InterfaceManager interfaceManager;
     public GameObject eventSystemPrefab;
     private void Awake()
     {
@@ -27,10 +34,14 @@ public class ServiceHub : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject); //maintaains gameobject accross scenes
-        if (customSceneManager == null) customSceneManager = GetComponent<Scenemanager>();
+       if (customSceneManager == null) customSceneManager = GetComponent<CustomSceneManager>();
+       // if (sceneManager == null) sceneManager = GetComponent<SceneManager>();
         if (gameManager == null) gameManager = GetComponent<GameManager>();
         if (gameExitManager == null) gameExitManager = GetComponent<GameExitManager>();
         if (interfaceManager == null) interfaceManager = GetComponent<InterfaceManager>();
+        if (menuManager == null) menuManager = GetComponent<MenuManager>();
+        if (hudManager == null) hudManager = GetComponent<HudManager>();
+        if (shopManager == null) shopManager = GetComponent<ShopManager>();
         InitializeGlobalEventSystem();
     }
 
