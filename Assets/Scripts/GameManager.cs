@@ -15,15 +15,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
    
-    private GameManager gameManager;
+
     private GameExitManager gameExitManager;
     private ServiceHub serviceHub;
-    private SceneManager sceneManager;
+    
     private CustomSceneManager customSceneManager;
     private HudManager hudManager;
     private MenuManager menuManager;
     private ShopManager shopManager;
-    private InterfaceManager interfaceManager;
+
     [Header("text output")]
     public TextMeshProUGUI textCurrentLevel;
     public TextMeshProUGUI textHealthText;
@@ -44,13 +44,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int InventoryBarMax = 24;
     private int InventoryBarMin = 0;
     public int InventoryslotsUsed = 0;
-    private int InventorySpaceAvailable;      
+    private int InventorySpaceAvailable;
     public void Awake()
     {
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
-          // return;
+            // return;
         }
         Instance = this;
         DontDestroyOnLoad(gameObject); // maintains data
@@ -61,19 +61,29 @@ public class GameManager : MonoBehaviour
         //Debug.Log("🎯 Found and executed game  manager");
         //gameManager = Object.FindFirstObjectByType<GameManager>();
         Debug.Log("🎯 Found and executed interface manager");
-        interfaceManager = Object.FindFirstObjectByType<InterfaceManager>();
+        menuManager = Object.FindFirstObjectByType<MenuManager>();
         Debug.Log("🎯 Found and executed game exit maager");
+        Debug.Log("🎯 Found and executed interface manager");
+        hudManager = Object.FindFirstObjectByType<HudManager>();
+        Debug.Log("🎯 Found and executed game exit maager");
+        Debug.Log("🎯 Found and executed interface manager");
+        shopManager = Object.FindFirstObjectByType<ShopManager>();
+        Debug.Log("🎯 Found and executed game exit maager");
+
         gameExitManager = Object.FindFirstObjectByType<GameExitManager>();
-
-
-        onResetStats();
+    }
+    private void Start()
+    {
+        ConnectUI();
+        hudManager.onResetStats();
     }
     private void Update()
-    {
-      
-        UpdateBagSpace();
-        UpdateHealthBar();
-        UpdateCurrentLevelOutput();
+        {
+        hudManager.UpdateBagSpace();
+    
+        hudManager.CalculateHealthPercentage();
+        hudManager.UpdateHealthBar();
+        menuManager.UpdateCurrentLevelOutput();
     }
     public void ConnectUI()// finds the ui entries after destroyed to re-valuate them
     {
@@ -82,74 +92,12 @@ public class GameManager : MonoBehaviour
         HealthBar = GameObject.Find("HealthBar")?.GetComponent<Slider>();
         InventoryCapacity = GameObject.Find("InventoryCapacity")?.GetComponent<Slider>();
         textCurrentLevel = GameObject.Find("CurrentLevel")?.GetComponent<TextMeshProUGUI>();
-         CalculateHealthPercentage();
-    }
-    public void UpdateCurrentLevelOutput()
-    {
-        if (textCurrentLevel != null)
-        {
-            string CurrentScene = SceneManager.GetActiveScene().name;
-            textCurrentLevel.text = "Current Level Loaded: " +CurrentScene;
-        }
-    }
-    public void UpdateBagSpace()
-    {
-        if (InventoryCapacity == null) { return; }
-        InventorySpaceAvailable = InventoryBarMax - InventoryslotsUsed;
-        InventoryCapacity.value = InventoryslotsUsed;
-        textInventoryAvaillabilityText.text = "Slots available" + InventorySpaceAvailable.ToString() + "\nInventory used: " + InventoryslotsUsed.ToString() + "/" + InventoryBarMax.ToString();
-    }
-    public void UpdateHealthBar()
-    {
-        if (HealthBar == null)  {  return; }
-        healtBarOutput = currentHealthPercentage;
-        HealthBar.value = healtBarOutput;
-        textHealthText.text = "Health %: " + currentHealthPercentage.ToString() + "\nHealth: " + currentHealth.ToString()  +"/" + maxHealth.ToString();
-        Debug.Log($"🎯 health percentage = {currentHealthPercentage}");
-        Debug.Log($"🎯 health  = {healtBarOutput}");
-    }
-    public void onTakeDamage()
-    {
-        currentHealth -= DamageTaken;
-        if (currentHealth <= 0)  {   currentHealth = 0;  }
-        CalculateHealthPercentage();
-        Debug.Log($"🎯 damagee = {DamageTaken}");
-    }
-    public void onTakeHealing()
-    {        
-        currentHealth += healingDone;
-       if (currentHealth >= maxHealth)  {  currentHealth = maxHealth;   }
-        CalculateHealthPercentage();
-        Debug.Log($"🎯 Healing  = {healingDone}");
-    }
-    public void CalculateHealthPercentage()
-    {
-        currentHealthPercentage = Mathf.RoundToInt((currentHealth / maxHealth) * 100);
-         Debug.Log($"🎯 health percentage = {currentHealthPercentage}");
-       
-    }
-    public void onAddItem()
-    {        Debug.Log("🎯 Found and executed add");
-        if (InventoryslotsUsed < InventoryBarMax) { InventoryslotsUsed++; }
 
- 
-            else
-            {
-                Debug.Log("❌ Could NOTaddiecakes");
-            }
+        menuManager.AutoHookupButtonsMenu();
+        hudManager.AutoHookupButtonsHUD();
+        shopManager.AutoHookupButtonsShop();
     }
-    public void onRemoveItem()
-    {
-        if (InventoryslotsUsed > 0) {   InventoryslotsUsed--;  }
-    }
-    public void onResetStats()
-    {
-        currentHealth = maxHealth;
-        InventoryslotsUsed = 0;
-        CalculateHealthPercentage();
-        if (HealthBar != null) { HealthBar.value = currentHealthPercentage; }
-        if (InventoryCapacity != null) { InventoryCapacity.value = InventoryslotsUsed; }
-    }
+
 }
 
 

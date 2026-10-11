@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7072131203953410482
+--- !u!1 &3737055590650075256
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6211976981118904443}
-  - component: {fileID: 2890605114479554153}
-  - component: {fileID: 2860420528149649645}
+  - component: {fileID: 1166329970539158765}
+  - component: {fileID: 1614604320531707582}
+  - component: {fileID: 6903880627017099898}
   m_Layer: 5
   m_Name: HealthText
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &6211976981118904443
+--- !u!224 &1166329970539158765
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7072131203953410482}
+  m_GameObject: {fileID: 3737055590650075256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -37,21 +37,21 @@ RectTransform:
   m_AnchoredPosition: {x: -436, y: 412.15}
   m_SizeDelta: {x: 311.6, y: 48.4468}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2890605114479554153
+--- !u!222 &1614604320531707582
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7072131203953410482}
+  m_GameObject: {fileID: 3737055590650075256}
   m_CullTransparentMesh: 1
---- !u!114 &2860420528149649645
+--- !u!114 &6903880627017099898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7072131203953410482}
+  m_GameObject: {fileID: 3737055590650075256}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}

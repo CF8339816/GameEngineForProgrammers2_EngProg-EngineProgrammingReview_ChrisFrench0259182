@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
+//using static UnityEditor.Timeline.Actions.MenuPriority;
 
 #region coder & project
 /// <summary>
@@ -19,15 +19,15 @@ public class HudManager : MonoBehaviour
     private GameManager gameManager;
     private GameExitManager gameExitManager;
     private ServiceHub serviceHub;
-    private SceneManager sceneManager;
+    // private SceneManager sceneManager;
     private CustomSceneManager customSceneManager;
     // private HudManager hudManager;
     private MenuManager menuManager;
     private ShopManager shopManager;
-    private InterfaceManager interfaceManager;
+
 
     [Header("text output")]
-    public TextMeshProUGUI textCurrentLevel;
+    //public TextMeshProUGUI textCurrentLevel;
     public TextMeshProUGUI textHealthText;
     public TextMeshProUGUI textInventoryAvaillabilityText;
     [Header("sliders")]
@@ -48,25 +48,145 @@ public class HudManager : MonoBehaviour
     public int InventoryslotsUsed = 0;
     private int InventorySpaceAvailable;
 
+    [SerializeField] private Button AddItem;
+    [SerializeField] private Button Heal;
+    [SerializeField] private Button takeDamage;
+    [SerializeField] private Button removeItem;
 
-    //private Button ButtonHunterHUD(string buttonName)
-    //{
-    //    Debug.Log("🎯 Found  BH found");
-    //    Button[] allActiveAndInactiveButtons = Resources.FindObjectsOfTypeAll<Button>();
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // keeps script accessable accross scene changes
 
-    //    foreach (Button btn in allActiveAndInactiveButtons)
-    //    {
-    //        if (btn.gameObject.name == buttonName)
-    //        {
+    }
+  
+    public void UpdateBagSpace()
+    {
+        if (InventoryCapacity == null) { return; }
+        InventorySpaceAvailable = InventoryBarMax - InventoryslotsUsed;
+        InventoryCapacity.value = InventoryslotsUsed;
+        textInventoryAvaillabilityText.text = "Slots available" + InventorySpaceAvailable.ToString() + "\nInventory used: " + InventoryslotsUsed.ToString() + "/" + InventoryBarMax.ToString();
+    }
+    public void UpdateHealthBar()
+    {
+        if (HealthBar == null) { return; }
+        healtBarOutput = currentHealthPercentage;
+        HealthBar.value = healtBarOutput;
+        textHealthText.text = "Health %: " + currentHealthPercentage.ToString() + "\nHealth: " + currentHealth.ToString() + "/" + maxHealth.ToString();
+        Debug.Log($"🎯 health percentage = {currentHealthPercentage}");
+        Debug.Log($"🎯 health  = {healtBarOutput}");
+    }
+    public void onTakeDamage()
+    {
+        currentHealth -= DamageTaken;
+        if (currentHealth <= 0) { currentHealth = 0; }
+        CalculateHealthPercentage();
+        Debug.Log($"🎯 damagee = {DamageTaken}");
+    }
+    public void onTakeHealing()
+    {
+        currentHealth += healingDone;
+        if (currentHealth >= maxHealth) { currentHealth = maxHealth; }
+        CalculateHealthPercentage();
+        Debug.Log($"🎯 Healing  = {healingDone}");
+    }
+    public void CalculateHealthPercentage()
+    {
+        currentHealthPercentage = Mathf.RoundToInt((currentHealth / maxHealth) * 100);
+        Debug.Log($"🎯 health percentage = {currentHealthPercentage}");
 
-    //            if (btn.gameObject.scene.isLoaded)
-    //            {
-    //                return btn;
-    //            }
-    //        }
-    //    }       
-    //    return null;
-    //}
+    }
+    public void onAddItem()
+    {
+        Debug.Log("🎯 Found and executed add");
+        if (InventoryslotsUsed < InventoryBarMax) { InventoryslotsUsed++; }
 
 
+        else
+        {
+            Debug.Log("❌ Could NOTaddiecakes");
+        }
+    }
+    public void onRemoveItem()
+    {
+        if (InventoryslotsUsed > 0) { InventoryslotsUsed--; }
+    }
+    public void onResetStats()
+    {
+        currentHealth = maxHealth;
+        InventoryslotsUsed = 0;
+        CalculateHealthPercentage();
+        if (HealthBar != null) { HealthBar.value = currentHealthPercentage; }
+        if (InventoryCapacity != null) { InventoryCapacity.value = InventoryslotsUsed; }
+    }
+
+
+    public void AutoHookupButtonsHUD()
+    {
+
+
+        if (HudManager.Instance == null)
+        {
+            Debug.LogError("InterfaceManager: Scenemanager.Instance is null! Cannot hook up buttons.");
+            return;
+        }
+
+       HudManager hudManager = HudManager.Instance;// reinitalize the scene manager
+
+
+        if (takeDamage != null)
+        {
+            takeDamage.onClick.RemoveAllListeners();
+            takeDamage.onClick.AddListener(onTakeDamage);
+            Debug.Log("🎯 Found and linked: takeDamage");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: takeDamage");
+        }
+        if (Heal != null)
+        {
+             Heal.onClick.RemoveAllListeners();
+            Heal.onClick.AddListener(onTakeHealing);
+            Debug.Log("🎯 Found and linked: Heal");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: Heal");
+        }
+        if (AddItem != null)
+        {
+            AddItem.onClick.RemoveAllListeners();
+            AddItem.onClick.AddListener(onAddItem);
+            Debug.Log("🎯 Found and linked: AddItem");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: AddItem");
+        }
+        if (removeItem != null)
+        {
+            removeItem.onClick.RemoveAllListeners();
+            removeItem.onClick.AddListener(onRemoveItem);
+            Debug.Log("🎯 Found and linked: removeItem");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: removeItem");
+        }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ConnectUI();
+        }
+        if (GameExitManager.Instance != null)
+        {
+            GameExitManager.Instance.ConnectExitUI();
+        }
+    }
 }
+

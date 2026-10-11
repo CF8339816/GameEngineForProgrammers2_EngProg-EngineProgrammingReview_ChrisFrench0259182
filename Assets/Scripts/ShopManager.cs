@@ -19,36 +19,81 @@ public class ShopManager : MonoBehaviour
     private GameManager gameManager;
     private GameExitManager gameExitManager;
     private ServiceHub serviceHub;
-    private SceneManager sceneManager;
+    //private SceneManager sceneManager;
     private CustomSceneManager customSceneManager;
     private HudManager hudManager;
     private MenuManager menuManager;
     //private ShopManager shopManager;
-    private InterfaceManager interfaceManager;
+
+    [SerializeField] private Button Buy;
+    [SerializeField] private Button Sell;
+    [SerializeField] private Button ExitShop;
 
 
-    //private Button ButtonHunterShop(string buttonName)
-    //{
-    //    Debug.Log("🎯 Found  BH found");
-    //    Button[] allActiveAndInactiveButtons = Resources.FindObjectsOfTypeAll<Button>();
+    private int RETURNLEVEL_INDEX;
+    public int ReturnIndex;
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // keeps script accessable accross scene changes
 
-    //    foreach (Button btn in allActiveAndInactiveButtons)
-    //    {
-    //        if (btn.gameObject.name == buttonName)
-    //        {
+    }
+    public void AutoHookupButtonsShop()
+    {
+        if (ShopManager.Instance == null)
+        {
+            Debug.LogError("InterfaceManager: Scenemanager.Instance is null! Cannot hook up buttons.");
+            return;
+        }
 
-    //            if (btn.gameObject.scene.isLoaded)
-    //            {
-    //                return btn;
-    //            }
-    //        }
-    //    }       
-    //    return null;
-    //}
+        ShopManager shopManager = ShopManager.Instance;// reinitalize the scene manager
 
 
 
 
+        if (Buy != null)
+        {
+            Buy.onClick.RemoveAllListeners();
+            Buy.onClick.AddListener(HudManager.Instance.onAddItem);
+            Debug.Log("🎯 Found and linked: Buy");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: Buy");
+        }
+        if (Sell != null)
+        {
+            Sell.onClick.RemoveAllListeners();
+            Sell.onClick.AddListener(HudManager.Instance.onRemoveItem);
+            Debug.Log("🎯 Found and linked: Sell");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: Sell");
+        }
+        if (ExitShop != null)
+        {
+            ExitShop.onClick.RemoveAllListeners();
+            ExitShop.onClick.AddListener(customSceneManager.onExitShop);
+            Debug.Log("🎯 Found and linked: ExitShop");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: ExitShop");
+        }
 
-
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ConnectUI();
+        }
+        if (GameExitManager.Instance != null)
+        {
+            GameExitManager.Instance.ConnectExitUI();
+        }
+    }
 }

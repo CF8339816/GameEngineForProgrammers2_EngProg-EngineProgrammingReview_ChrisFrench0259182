@@ -23,8 +23,15 @@ public class ServiceHub : MonoBehaviour
     private HudManager hudManager;
     private MenuManager menuManager;
     private ShopManager shopManager;
-    private InterfaceManager interfaceManager;
+
     public GameObject eventSystemPrefab;
+    public GameObject _ServiceHub;
+    public GameObject SceneManager;
+    public GameObject InterfaceManager;
+    public GameObject GameManager;
+
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -38,7 +45,7 @@ public class ServiceHub : MonoBehaviour
        // if (sceneManager == null) sceneManager = GetComponent<SceneManager>();
         if (gameManager == null) gameManager = GetComponent<GameManager>();
         if (gameExitManager == null) gameExitManager = GetComponent<GameExitManager>();
-        if (interfaceManager == null) interfaceManager = GetComponent<InterfaceManager>();
+    
         if (menuManager == null) menuManager = GetComponent<MenuManager>();
         if (hudManager == null) hudManager = GetComponent<HudManager>();
         if (shopManager == null) shopManager = GetComponent<ShopManager>();

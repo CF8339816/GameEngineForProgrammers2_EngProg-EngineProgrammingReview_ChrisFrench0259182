@@ -19,11 +19,11 @@ public class CustomSceneManager : MonoBehaviour
     private GameManager gameManager;
     private GameExitManager gameExitManager;
     private ServiceHub serviceHub;
-    private CustomSceneManager customSceneManager;
+   // private CustomSceneManager customSceneManager;
     private HudManager hudManager;
     private MenuManager menuManager;
     private ShopManager shopManager;
-    private InterfaceManager interfaceManager;
+ 
 
     // 2. Removed 'const' because compile-time constants cannot be serialized in the Inspector
     [SerializeField] private int MAIN_INDEX = 0;
@@ -69,11 +69,27 @@ public class CustomSceneManager : MonoBehaviour
     {
         if (scene.buildIndex == MAIN_INDEX)
         {
-            interfaceManager = FindFirstObjectByType<InterfaceManager>();// finds interface manager
-            if (interfaceManager != null)
+            menuManager = FindFirstObjectByType<MenuManager>();// finds interface manager
+            if (menuManager != null)
             {
-                interfaceManager.AutoHookupButtons();
+                menuManager.AutoHookupButtonsMenu();
+                
             }
+            hudManager = FindFirstObjectByType<HudManager>();// finds interface manager
+            if (hudManager != null)
+
+            {
+                hudManager.AutoHookupButtonsHUD();
+                
+            }
+            shopManager = FindFirstObjectByType<ShopManager>();// finds interface manager
+            if (shopManager != null)
+
+            { 
+                shopManager.AutoHookupButtonsShop(); 
+            }
+
+
         }
     }
     public void LoadLevelByIndex(int index)
@@ -112,15 +128,16 @@ public class CustomSceneManager : MonoBehaviour
     }
     public void onStart()
     {
-        if (GameManager.Instance != null)
+        if (HudManager.Instance != null)
         {
-            GameManager.Instance.onResetStats();
+            HudManager.Instance.onResetStats();
         }
         onLevel1();
     }
     public void onLoadNextLevel()
     {
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
+       
         if (nextIndex <= LEVEL_3_INDEX)
         {
             StartCoroutine(AddSceneLayers(nextIndex));

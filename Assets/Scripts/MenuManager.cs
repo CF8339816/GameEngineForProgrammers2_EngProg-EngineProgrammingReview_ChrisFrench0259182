@@ -21,153 +21,165 @@ public class MenuManager : MonoBehaviour
     private GameManager gameManager;
     private GameExitManager gameExitManager;
     private ServiceHub serviceHub;
-    private SceneManager sceneManager;
+    //private SceneManager sceneManager;
     private CustomSceneManager customSceneManager;
     private HudManager hudManager;
-   // private MenuManager menuManager;
+    // private MenuManager menuManager;
     private ShopManager shopManager;
-    private InterfaceManager interfaceManager;
 
-    [SerializeField] private int MAIN_INDEX = 0;
-    [SerializeField] private int MENU_INDEX = 1;
-    [SerializeField] private int LEVEL_1_INDEX = 2;
-    [SerializeField] private int LEVEL_2_INDEX = 3;
-    [SerializeField] private int LEVEL_3_INDEX = 4;
-    [SerializeField] private int SHOP_INDEX = 5;
-    [SerializeField] private int PLAYER_INDEX = 6;
-    [SerializeField] private int HUD_INDEX = 7;
-    [SerializeField] private int ENVIRONMENT_INDEX = 8;
+
+     private int MAIN_INDEX = 0;
+     private int MENU_INDEX = 1;
+     private int LEVEL_1_INDEX = 2;
+     private int LEVEL_2_INDEX = 3;
+     private int LEVEL_3_INDEX = 4;
+     private int SHOP_INDEX = 5;
+     private int PLAYER_INDEX = 6;
+     private int HUD_INDEX = 7;
+     private int ENVIRONMENT_INDEX = 8;
 
     private int RETURNLEVEL_INDEX;
     public int ReturnIndex;
-    //[SerializeField] private Scene MAIN;
-    //[SerializeField] private Scene MENU;
-    //[SerializeField] private Scene LEVEL1;
-    //[SerializeField] private Scene LEVEL2;
-    //[SerializeField] private Scene LEVEL3;
-    //[SerializeField] private Scene SHOP;
-    //[SerializeField] private Scene PLAYER;
-    //[SerializeField] private Scene HUD;
-    //[SerializeField] private Scene ENVIRONMENT;
 
+    [Header("text output")]
+    public TextMeshProUGUI textCurrentLevel;
 
-
-    //private Button ButtonHunterMenu(string buttonName)
-    //{
-    //    Debug.Log("🎯 Found  BH found");
-    //    Button[] allActiveAndInactiveButtons = Resources.FindObjectsOfTypeAll<Button>();
-
-    //    foreach (Button btn in allActiveAndInactiveButtons)
-    //    {
-    //        if (btn.gameObject.name == buttonName)
-    //        {
-
-    //            if (btn.gameObject.scene.isLoaded)
-    //            {
-    //                return btn;
-    //            }
-    //        }
-    //    }       
-    //    return null;
-    //}
-
-
-
+    [SerializeField] private Button Level1;
+    [SerializeField] private Button level2;
+    [SerializeField] private Button level3;
+    [SerializeField] private Button Quit;
+    [SerializeField] private Button Shop;
+    [SerializeField] private Button Menu;
+    [SerializeField] private Button StartGame;
+    [SerializeField] private Button NextLevel;
     void Awake()
     {
-        Debug.Log("CustomSceneManager awakening...");
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject); // keeps script accessible across scene changes
-        SceneManager.LoadScene(ENVIRONMENT_INDEX, LoadSceneMode.Additive);
-        Debug.Log(" Menu  awakening...");
-        SceneManager.LoadScene(MENU_INDEX, LoadSceneMode.Additive);
-        Debug.Log(" scene HUD  awakening...");
-        SceneManager.LoadScene(HUD_INDEX, LoadSceneMode.Additive);
-        SceneManager.LoadScene(PLAYER_INDEX, LoadSceneMode.Additive);
-        Debug.Log("Scenemanager  done.");
+        DontDestroyOnLoad(gameObject); // keeps script accessable accross scene changes
+
     }
-    //private void OnEnable()
-    //{
-    //    SceneManager.sceneLoaded += OnSceneLoaded;
-    //}
-    //private void OnDisable()
-    //{
-    //    SceneManager.sceneLoaded -= OnSceneLoaded;
-    //}
 
-
-    public void LoadLevelByIndex(int index)
+    public void UpdateCurrentLevelOutput()
     {
-        if (index >= 0 && index < SceneManager.sceneCountInBuildSettings)
+        if (textCurrentLevel != null)
         {
-            SceneManager.LoadScene(index);
+            string CurrentScene = SceneManager.GetActiveScene().name;
+            textCurrentLevel.text = "Current Level Loaded: " + CurrentScene;
         }
     }
-    public void onLevel1()
+    public void AutoHookupButtonsMenu()
+
     {
-        StartCoroutine(AddSceneLayers(LEVEL_1_INDEX));
-    }
-    public void onLevel2()
-    {
-        StartCoroutine(AddSceneLayers(LEVEL_2_INDEX));
-    }
-    public void onLevel3()
-    {
-        StartCoroutine(AddSceneLayers(LEVEL_3_INDEX));
-    }
-    public void onMenu()
-    {
-        SceneManager.LoadScene(MAIN_INDEX, LoadSceneMode.Single);
-        SceneManager.LoadScene(MENU_INDEX, LoadSceneMode.Additive);
-    }
-    public void onShop()
-    {
-        ReturnIndex = SceneManager.GetActiveScene().buildIndex;
-        StartCoroutine(AddSceneLayers(SHOP_INDEX));
-    }
-    public void onExitShop()
-    {
-        RETURNLEVEL_INDEX = ReturnIndex;
-        StartCoroutine(AddSceneLayers(RETURNLEVEL_INDEX));
-    }
-    public void onStart()
-    {
-        if (GameManager.Instance != null)
+
+        if (MenuManager.Instance == null)
         {
-            GameManager.Instance.onResetStats();
+            Debug.LogError("InterfaceManager: Scenemanager.Instance is null! Cannot hook up buttons.");
+            return;
         }
-        onLevel1();
-    }
-    public void onLoadNextLevel()
-    {
-        int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        if (nextIndex <= LEVEL_3_INDEX)
+
+        MenuManager menuManager = MenuManager.Instance;// reinitalize the scene manager
+
+
+        if (StartGame != null)
         {
-            StartCoroutine(AddSceneLayers(nextIndex));
+            StartGame.onClick.RemoveAllListeners();
+            StartGame.onClick.AddListener(customSceneManager.onStart);
+            Debug.Log("🎯 Found and linked: StartGame");
         }
         else
         {
-            onMenu();
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: StartGame");
         }
-    }
-    public IEnumerator AddSceneLayers(int baseLevelIndex)
-    {
-        yield return SceneManager.LoadSceneAsync(baseLevelIndex, LoadSceneMode.Single);// load active level and wait till complete        
-        yield return SceneManager.LoadSceneAsync(MENU_INDEX, LoadSceneMode.Additive);// load scene layer fully then on to next
-        yield return SceneManager.LoadSceneAsync(HUD_INDEX, LoadSceneMode.Additive);// load scene layer fully then on to next
-        yield return SceneManager.LoadSceneAsync(PLAYER_INDEX, LoadSceneMode.Additive);// load scene layer fully then on to next
-        yield return SceneManager.LoadSceneAsync(ENVIRONMENT_INDEX, LoadSceneMode.Additive);// load scene layer fully 
-        Scene baseScene = SceneManager.GetSceneByBuildIndex(baseLevelIndex);// makse sure added objects  owned by base layer
-        if (baseScene.IsValid())
+        if (NextLevel != null)
         {
-            SceneManager.SetActiveScene(baseScene);
+            NextLevel.onClick.RemoveAllListeners();
+            NextLevel.onClick.AddListener(customSceneManager.onLoadNextLevel);
+            Debug.Log("🎯 Found and linked: nextLevel");
         }
-        yield return null;
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: nextLevel");
+        }
+        if (Menu != null)
+        {
+            Menu.onClick.RemoveAllListeners();
+            Menu.onClick.AddListener(customSceneManager.onMenu);
+            Debug.Log("🎯 Found and linked: Menu");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: Menu");
+        }
+        if (Level1 != null)
+        {
+            Level1.onClick.RemoveAllListeners();
+            Level1.onClick.AddListener(customSceneManager.onLevel1);
+            Debug.Log("🎯 Found and linked: Level1");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: Level1");
+        }
+        if (level2 != null)
+        {
+            level2.onClick.RemoveAllListeners();
+            level2.onClick.AddListener(customSceneManager.onLevel2);
+            Debug.Log("🎯 Found and linked: level2");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: level2");
+        }
+        if (level3 != null)
+        {
+            level3.onClick.RemoveAllListeners();
+            level3.onClick.AddListener(customSceneManager.onLevel3);
+            Debug.Log("🎯 Found and linked: level3");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: level3");
+        }
+        if (Shop != null)
+        {
+            Shop.onClick.RemoveAllListeners();
+            Shop.onClick.AddListener(customSceneManager.onShop);
+            Debug.Log("🎯 Found and linked: Shop");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: Shop");
+        }
+ 
+        if (Quit != null)
+        {
+            Quit.onClick.RemoveAllListeners();
+            if (GameExitManager.Instance != null)
+            {
+                Quit.onClick.AddListener(GameExitManager.Instance.Ongameexit);
+            }
+            Debug.Log("🎯 Found and linked: Quit");
+        }
+        else
+        {
+            Debug.LogWarning("❌ Could NOT find Button GameObject named: Quit");
+        }
+
+
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ConnectUI();
+        }
+        if (GameExitManager.Instance != null)
+        {
+            GameExitManager.Instance.ConnectExitUI();
+        }
     }
 }
 
