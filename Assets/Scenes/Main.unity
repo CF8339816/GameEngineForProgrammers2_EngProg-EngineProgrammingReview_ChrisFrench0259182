@@ -199,7 +199,7 @@ MonoBehaviour:
   eventSystemPrefab: {fileID: 5345072532061849581}
   _ServiceHub: {fileID: 3452942755747941063}
   SceneManager: {fileID: 769205477739912543}
-  InterfaceManager: {fileID: 7832393025996031684}
+  InterfaceManager: {fileID: 0}
   GameManager: {fileID: 789731715905371813}
 --- !u!1 &769205477739912543
 GameObject:
@@ -333,21 +333,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
---- !u!4 &3942396532077761274
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7832393025996031684}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4030861689300163580
 Transform:
   m_ObjectHideFlags: 0
@@ -378,33 +363,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5044430905385254498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7832393025996031684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d7d900e15e156e4e9f63f9ea12b0b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InterfaceManager
-  Buy: {fileID: 2449926190781777916, guid: aa8f7759449fa4a458369a1dc86b787a, type: 3}
-  Heal: {fileID: 1059061101507966897, guid: 10e2b4df903dd344bb5cdeaee421b97b, type: 3}
-  takeDamage: {fileID: 6231224635752491528, guid: 3d69f0b510a1e8941ae28098dd8e0b9d, type: 3}
-  removeItem: {fileID: 8131029604429562595, guid: 7208c78599331ae4f98bc2708234ffea, type: 3}
-  Level1: {fileID: 6875517474445564662, guid: 396274089f5d87343af52e095ae185da, type: 3}
-  level2: {fileID: 7935990286288465923, guid: 5980f7f0bac865148a60897c5b86eb79, type: 3}
-  level3: {fileID: 8250094682654657943, guid: aafe590a4bc7e5a4faf031c1649c947b, type: 3}
-  Sell: {fileID: 828132985722702133, guid: 3ab5f9a7ef729794f8bae7e1c0d970c0, type: 3}
-  Quit: {fileID: 2298074089721702901, guid: 869b5a4943f98fb43a19e7a95089ed68, type: 3}
-  AddItem: {fileID: 3153065179984172318, guid: b5b6de0afc316584a92694ad58b5d035, type: 3}
-  ExitShop: {fileID: 978837584024549703, guid: e9421f5fb0ff0e9438bb7ccf34dda113, type: 3}
-  Shop: {fileID: 2578954517256788362, guid: eb9db1c73c82e4a499b77f2ae3cd34af, type: 3}
-  Menu: {fileID: 5812846361943048798, guid: 0dafd980eeb873040b2cca83d34e185f, type: 3}
-  StartGame: {fileID: 4566362942927285581, guid: 6e90a35656ad69247a2f4489e1377210, type: 3}
-  NextLevel: {fileID: 8545906850178681205, guid: d0cf993d1322f7544b78603c4b0e0281, type: 3}
 --- !u!114 &5109388265349441247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,18 +470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d76deada3cc854e81ed42a4136fde4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  textCurrentLevel: {fileID: 2025189224630803756, guid: e90d729e49f21db4997b5c1b66c809a7, type: 3}
-  textHealthText: {fileID: 2860420528149649645, guid: a9c8e816f1a057c4195b2e82987e5d3b, type: 3}
-  textInventoryAvaillabilityText: {fileID: 1283721070283797619, guid: 4428128406a239b4dbb0c07aff4e8f1c, type: 3}
-  HealthBar: {fileID: 4405863642406839141, guid: 8bcb3c36171a5164b8ea399ea5ac4ab0, type: 3}
-  InventoryCapacity: {fileID: 7282433332750113770, guid: ea5ffde087807874b9eb578e02e478d5, type: 3}
-  HealthBarMax: 100
-  healingDone: 12
-  DamageTaken: 21
-  currentHealth: 0
-  maxHealth: 200
-  InventoryBarMax: 24
-  InventoryslotsUsed: 0
 --- !u!4 &6665100549640295880
 Transform:
   m_ObjectHideFlags: 0
@@ -654,23 +600,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &7832393025996031684
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3942396532077761274}
-  - component: {fileID: 5044430905385254498}
-  m_Layer: 0
-  m_Name: InterfaceManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!114 &8200626114770885955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,7 +679,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 4030861689300163580}
   - {fileID: 888944973771355444}
-  - {fileID: 3942396532077761274}
   - {fileID: 5016255037207184955}
   - {fileID: 5992008571237945149}
   - {fileID: 3577733752474283517}

@@ -24,27 +24,6 @@ public class GameManager : MonoBehaviour
     private MenuManager menuManager;
     private ShopManager shopManager;
 
-    [Header("text output")]
-    public TextMeshProUGUI textCurrentLevel;
-    public TextMeshProUGUI textHealthText;
-    public TextMeshProUGUI textInventoryAvaillabilityText;
-    [Header("sliders")]
-    [SerializeField] private Slider HealthBar;
-    [SerializeField] private Slider InventoryCapacity;
-    [Header("health")]
-    public int HealthBarMax = 100;
-    private int HealthBarMin = 0;
-    [SerializeField] public int healingDone= 12 ;
-    [SerializeField] public int DamageTaken= 21;
-    private int currentHealthPercentage;
-    private int healtBarOutput;
-    public float currentHealth;
-    [SerializeField] public float maxHealth;
-    [Header("inventory")]
-    [SerializeField] public int InventoryBarMax = 24;
-    private int InventoryBarMin = 0;
-    public int InventoryslotsUsed = 0;
-    private int InventorySpaceAvailable;
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -87,15 +66,17 @@ public class GameManager : MonoBehaviour
     }
     public void ConnectUI()// finds the ui entries after destroyed to re-valuate them
     {
-        textHealthText = GameObject.Find("HealthText")?.GetComponent<TextMeshProUGUI>();
-        textInventoryAvaillabilityText = GameObject.Find("InventoryAvaillabilityText")?.GetComponent<TextMeshProUGUI>();
-        HealthBar = GameObject.Find("HealthBar")?.GetComponent<Slider>();
-        InventoryCapacity = GameObject.Find("InventoryCapacity")?.GetComponent<Slider>();
-        textCurrentLevel = GameObject.Find("CurrentLevel")?.GetComponent<TextMeshProUGUI>();
-
         menuManager.AutoHookupButtonsMenu();
         hudManager.AutoHookupButtonsHUD();
-        shopManager.AutoHookupButtonsShop();
+        shopManager.AutoHookupButtonsShop(); 
+        
+        hudManager.textHealthText = GameObject.Find("HealthText")?.GetComponent<TextMeshProUGUI>();
+        hudManager.textInventoryAvaillabilityText = GameObject.Find("InventoryAvaillabilityText")?.GetComponent<TextMeshProUGUI>();
+        hudManager.HealthBar = GameObject.Find("HealthBar")?.GetComponent<Slider>();
+        hudManager.InventoryCapacity = GameObject.Find("InventoryCapacity")?.GetComponent<Slider>();
+        menuManager.textCurrentLevel = GameObject.Find("CurrentLevel")?.GetComponent<TextMeshProUGUI>();
+
+     
     }
 
 }

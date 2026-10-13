@@ -31,27 +31,27 @@ public class HudManager : MonoBehaviour
     public TextMeshProUGUI textHealthText;
     public TextMeshProUGUI textInventoryAvaillabilityText;
     [Header("sliders")]
-    [SerializeField] private Slider HealthBar;
-    [SerializeField] private Slider InventoryCapacity;
+    [SerializeField] public Slider HealthBar;
+    [SerializeField] public Slider InventoryCapacity;
     [Header("health")]
     public int HealthBarMax = 100;
-    private int HealthBarMin = 0;
+    public int HealthBarMin = 0;
     [SerializeField] public int healingDone = 12;
     [SerializeField] public int DamageTaken = 21;
-    private int currentHealthPercentage;
-    private int healtBarOutput;
+    public int currentHealthPercentage;
+    public int healtBarOutput;
     public float currentHealth;
     [SerializeField] public float maxHealth;
     [Header("inventory")]
     [SerializeField] public int InventoryBarMax = 24;
-    private int InventoryBarMin = 0;
+    public int InventoryBarMin = 0;
     public int InventoryslotsUsed = 0;
-    private int InventorySpaceAvailable;
+    public int InventorySpaceAvailable;
 
-    [SerializeField] private Button AddItem;
-    [SerializeField] private Button Heal;
-    [SerializeField] private Button takeDamage;
-    [SerializeField] private Button removeItem;
+    [SerializeField] public Button AddItem;
+    [SerializeField] public Button Heal;
+    [SerializeField] public Button takeDamage;
+    [SerializeField] public Button removeItem;
 
     void Awake()
     {
@@ -62,9 +62,7 @@ public class HudManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject); // keeps script accessable accross scene changes
-
-    }
-  
+    }  
     public void UpdateBagSpace()
     {
         if (InventoryCapacity == null) { return; }
@@ -99,18 +97,12 @@ public class HudManager : MonoBehaviour
     {
         currentHealthPercentage = Mathf.RoundToInt((currentHealth / maxHealth) * 100);
         Debug.Log($"🎯 health percentage = {currentHealthPercentage}");
-
     }
     public void onAddItem()
     {
         Debug.Log("🎯 Found and executed add");
         if (InventoryslotsUsed < InventoryBarMax) { InventoryslotsUsed++; }
-
-
-        else
-        {
-            Debug.Log("❌ Could NOTaddiecakes");
-        }
+        else    {      Debug.Log("❌ Could NOTaddiecakes");    }
     }
     public void onRemoveItem()
     {
@@ -124,21 +116,14 @@ public class HudManager : MonoBehaviour
         if (HealthBar != null) { HealthBar.value = currentHealthPercentage; }
         if (InventoryCapacity != null) { InventoryCapacity.value = InventoryslotsUsed; }
     }
-
-
     public void AutoHookupButtonsHUD()
     {
-
-
         if (HudManager.Instance == null)
         {
             Debug.LogError("InterfaceManager: Scenemanager.Instance is null! Cannot hook up buttons.");
             return;
         }
-
        HudManager hudManager = HudManager.Instance;// reinitalize the scene manager
-
-
         if (takeDamage != null)
         {
             takeDamage.onClick.RemoveAllListeners();
