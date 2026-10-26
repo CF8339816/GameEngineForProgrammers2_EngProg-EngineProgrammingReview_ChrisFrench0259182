@@ -64,9 +64,9 @@ public class GameManager : MonoBehaviour
         if (textHealthText == null) textHealthText = GameObject.Find("HealthText")?.GetComponent<TextMeshProUGUI>();
         if (textInventoryAvaillabilityText == null) textInventoryAvaillabilityText = GameObject.Find("InventoryAvaillabilityText")?.GetComponent<TextMeshProUGUI>();
         if (HealthBar == null) HealthBar = GameObject.Find("HealthBar")?.GetComponent<Slider>();
-        if (InventoryCapacity == null) InventoryCapacity = GameObject.Find("InventoryCapacity")?.GetComponent<Slider>();
-        if (textCurrentLevel == null) textCurrentLevel = GameObject.Find("CurrentLevel")?.GetComponent<TextMeshProUGUI>();
-
+        if (InventoryCapacity == null) InventoryCapacity = GameObject.Find("InventoryCapacity")?.GetCompoTextMeshProUGUI>();
+nent<Slider>();
+        if (textCurrentLevel == null) textCurrentLevel = GameObject.Find("CurrentLevel")?.GetComponent<
     }
     public void UpdateCurrentLevelOutput()
     {
