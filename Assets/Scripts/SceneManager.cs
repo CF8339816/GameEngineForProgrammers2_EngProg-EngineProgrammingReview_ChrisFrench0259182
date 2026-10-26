@@ -71,7 +71,6 @@ public class Scenemanager : MonoBehaviour
             level3Button.onClick.AddListener(onLevel3);
         }
         Button QuitButton = GameObject.Find("Quit")?.GetComponent<Button>();
-        QuitButton.onClick.AddListener(ServiceHub.Instance.gameExitManager.Ongameexit);
         if (QuitButton != null)
         {
             QuitButton.onClick.RemoveAllListeners();
